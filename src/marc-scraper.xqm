@@ -1,29 +1,23 @@
 xquery version "3.1";
 
 (:~ 
- : This module scrapes and parses MARC 21 Bibliographic Format to convert it to a standard schema
+ : This module fetches and parses MARC 21 Bibliographic Format to convert it to a standard schema
  : 
  : Module name: MARC Scraper Library Module
  : Module version: 0.0.1
  : Date: June 29, 2023
  : License: Apache-2.0
  : XQuery specification: 3.1
- : Module overview: 
+ : Module overview: Based on the marc-json-schema repo by @thisismattmiller
  : Dependencies: BaseX 
  : @author @timathom[@indieweb.social]
  : @version 0.0.1
  :
 :)
 
-
 module namespace ms = "__marc-scraper__";
 
-(:import module namespace ec = "__entity-checker__" at "entity-checker.xqm";
-import module namespace ex = "__entity-extractor__" at "entity-extractor.xqm";
-import module namespace md = "__marc-data-definitions__" at "marc-data-definitions.xqm";:)
-
 declare namespace errs = "__errs__";
-
 declare namespace madsrdf = "http://www.loc.gov/mads/rdf/v1#";
 declare namespace marc = "http://www.loc.gov/MARC21/slim";
 declare namespace rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
@@ -32,7 +26,6 @@ declare variable $ms:SCHEMA := map {};
 declare variable $ms:FIXED := array {
   "leader", "001", "003", "005", "006", "007a", "007c", "007d", "007f", "007g", "007h", "007k", "007m", "007o", "007q", "007r", "007s", "007t", "007v", "007z", "008a", "008b", "008c", "008p", "008m", "008s", "008v", "008x"
 };
-
 
 (:~ 
  :  Fetches LC MARC documentation HTML page and parses it 
@@ -54,9 +47,9 @@ declare variable $ms:FIXED := array {
      let $base := 
        "http://www.loc.gov/marc/" || $format?name || "/" || $format?abbrev
      let $urls := (
-       for $tag in (10 to 1000)
+       for $tag in (10 to 1000) ! format-number(., "000")
        return map { 
-         "field": $tag, "url": $base || format-number($tag, "000") || ".html" 
+         "field": $tag, "url": $base || $tag || ".html" 
        }
        ,
        for $code in $ms:FIXED?*
@@ -69,12 +62,11 @@ declare variable $ms:FIXED := array {
          http:send-request(<http:request method="get"/>, $url?url)
      return (
        if ($fetch[1]/@status = "200")
-       then $fetch[2]
+       then <data code="{$url?field}" status="200">{$fetch[2]}</data>
        else <data code="{$url?field}" status="NA"/>
        ,
        prof:void(trace($url))
-     )
-       
+     )       
    }, "data")
        
 };
