@@ -28,7 +28,7 @@ declare variable $ms:FIXED := array {
 };
 
 (:~ 
- :  Fetches LC MARC documentation HTML page and parses it 
+ :  Fetches LC MARC documentation HTML pages and stores them in a database 
  :  
  : 
  : @param $format Map with two keys ("name" and "abbrev") indicating 
@@ -69,5 +69,199 @@ declare variable $ms:FIXED := array {
      )       
    }, "data")
        
+};
+
+(:~ 
+ : Parses data from fixed field pages.
+ :
+ :
+ :
+
+ :)
+declare function ms:parse-docs() {
+   
+  let $dbs := ("authority", "bibliographic", "holdings")
+  for $db in $dbs
+  let $data := db:get("marc-"||$db||"-docs")
+  return (
+    for $doc in $data/*/data[@status = "200"]
+    let $h1 := string-join($doc//h1//text())    
+    return element {$db} {
+      attribute {"code"} {$doc/@code},
+      
+      (: Process fixed fields :)
+      if (starts-with($doc/@code, "00") or $doc/@code = "leader")
+      then (        
+        (: ms:parse-title($h1),
+        ms:parse-repeat($h1)
+        , :)
+        let $layout-1 := $doc//table[@class = "characterPositions"]
+        let $layout-2 := $doc//table[tr/td/strong = "Character Positions"]
+        return (
+          ms:parse-fixed-layout-1($layout-1),
+          ms:parse-fixed-layout-2($layout-2)
+        )
+      )        
+      else (
+        (: Process data fields :)
+        (: ms:parse-title($h1),
+        ms:parse-repeat($h1) :)
+        
+      )
+    }
+   
+  )
+   
+};
+
+(:~ 
+ :
+ :
+ :
+ :)
+declare function ms:parse-title(
+  $h1 as xs:string
+) as element(title) {
+  
+  <title>{
+    if (starts-with($h1, "Leader"))
+    then "Leader"
+    else substring-after($h1, "- ") => substring-before(" (")
+  }</title>
+    
+};
+
+(:~ 
+ :
+ :
+ :
+ :)
+declare function ms:parse-repeat(
+  $h1 as xs:string
+) as item()* {
+  
+  <repeat>{
+    if (contains($h1, "(R)"))
+    then true()
+    else false()  
+  }</repeat>
+  
+};
+
+(:~ 
+ :
+ :
+ :
+ :)
+declare function ms:parse-fixed-layout-1(
+  $layout-1 as element(table)*
+) as item()* {
+  
+  for $entry in $layout-1/tr/td[@colspan = "2"]
+  let $tokens := tokenize($entry/span/strong, " - ")
+  return ms:parse-data-layout-1($entry, $tokens) 
+ 
+};
+
+(:~ 
+ :
+ :
+ :
+ :)
+declare function ms:parse-fixed-layout-2(
+  $layout-2 as element()*
+) as item()* {
+  
+  for $entry in $layout-2/tr/td[@width = "45%"]
+  return ms:parse-data-layout-2($entry)
+    
+};
+
+
+
+(:~ 
+ :
+ :
+ :
+ :)
+declare function ms:parse-data-layout-1(
+  $entry as element()*,
+  $tokens as xs:string*
+) as item()* {
+  
+  let $name := <name>{normalize-space($tokens[2])}</name>
+  let $positions := <positions>{
+    if (contains($tokens[1], "-"))
+    then (
+     <start>{substring-before($tokens[1], "-")}</start>,
+     <stop>{substring-after($tokens[1], "-")}</stop> 
+    )
+    else (
+      $tokens[1] ! (<start>{.}</start>, <stop>{.}</stop>)      
+    )
+  }</positions>
+  return <data>{
+    $name, $positions, <values>{
+      if ($entry/../following-sibling::*[1][self::tr][td/dl])
+      then 
+        let $values := $entry/../following-sibling::*[1][self::tr]/td/dl/dd
+        for $value in $values
+        let $tokens := tokenize($value, " - ")
+        return (
+          <entry>
+            <code>{$tokens[1]}</code>
+            <name>{normalize-space($tokens[2])}</name> 
+          </entry>         
+        )
+      else ()
+    }</values>
+  }</data>
+    
+};
+
+(:~ 
+ :
+ :
+ :
+ :)
+declare function ms:parse-data-layout-2(
+  $entry as element()*
+) as item()* {
+  
+  for tumbling window $w in $entry/strong/following-sibling::node()
+    start $s when true()
+    end $e next $n when $n/self::strong
+  where normalize-space(string-join($w))
+  let $head :=    
+    let $tokens := 
+      tokenize($w/self::strong, " - ")    
+    let $name := <name>{normalize-space($tokens[2])}</name>
+    let $positions := <positions>{
+      if (contains($tokens[1], "-"))
+      then (
+       <start>{substring-before($tokens[1], "-")}</start>,
+       <stop>{substring-after($tokens[1], "-")}</stop> 
+      )
+      else (
+        $tokens[1] ! (<start>{.}</start>, <stop>{.}</stop>)      
+      )
+    }</positions>
+    return ($name, $positions)
+  return <data>{
+      $head, <values>{     
+      for $text in $w//self::text()
+      let $lines := tokenize($text, "\n")
+      for $line in $lines
+      let $tokens := tokenize($line, " - ")
+      where normalize-space(string-join($tokens))
+      return (
+        <entry>
+          <code>{normalize-space($tokens[1])}</code>
+          <name>{normalize-space($tokens[2])}</name>
+        </entry>
+      )
+    }</values>
+  }</data>
+    
 };
 
