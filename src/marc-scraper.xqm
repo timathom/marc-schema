@@ -91,17 +91,22 @@ declare function ms:parse-docs() {
       
       (: Process fixed fields :)
       if (starts-with($doc/@code, "00") or $doc/@code = "leader")
-      then (        
-        (: ms:parse-title($h1),
-        ms:parse-repeat($h1)
-        , :)
-        let $layout-1 := $doc//table[@class = "characterPositions"]
-        let $layout-2 := $doc//table[tr/td/strong = "Character Positions"]
-        return (
-          ms:parse-fixed-layout-1($layout-1),
-          ms:parse-fixed-layout-2($layout-2)
+      then 
+        if ($doc/@code != "006")
+        then (        
+          (: ms:parse-title($h1),
+          ms:parse-repeat($h1)
+          , :)
+          let $layout-1 := $doc//table[@class = "characterPositions"]
+          let $layout-2 := $doc//table[tr/td/strong = "Character Positions"]
+          return (
+            (: ms:parse-fixed-layout-1($layout-1),
+            ms:parse-fixed-layout-2($layout-2) :)
+          )
         )
-      )        
+        else if ($doc/@code = "006")
+        then ms:parse-006($doc//table[1])
+        else ()     
       else (
         (: Process data fields :)
         (: ms:parse-title($h1),
@@ -248,7 +253,8 @@ declare function ms:parse-data-layout-2(
     }</positions>
     return ($name, $positions)
   return <data>{
-      $head, <values>{     
+    $head, 
+    <values>{     
       for $text in $w//self::text()
       let $lines := tokenize($text, "\n")
       for $line in $lines
@@ -265,3 +271,68 @@ declare function ms:parse-data-layout-2(
     
 };
 
+(:~ 
+ :
+ :
+ :
+ :)
+declare function ms:parse-006(
+  $table as element(table)*
+) as item()* {
+  
+ let $name := 
+   <name>Fixed-Length Data Elements-Additional Material Characteristics</name>
+ let $title-map-006 := map {
+    "Books": "008b",
+    "Computer files/Electronic resources": "008c",
+    "Music": "008m",
+    "Continuing resources": "008s",
+    "Visual materials": "008v",
+    "Maps": "008p",
+    "Mixed materials": "008x"
+ }
+  let $positions := <positions>{
+    for $td in $table/tr/(td[@width = "45%"]/p|td[@width = "45%"][not(p)])
+    for tumbling window $w in $td/(em|text())
+      start $s when $s/self::em
+      end $e next $n when $n/self::em
+    return 
+      <group code="{$title-map-006?(normalize-space($w/self::em))}">{
+        ms:parse-006-groups($w)        
+      }</group>      
+  }</positions>
+  return $positions
+
+};
+
+
+declare function ms:parse-006-groups(
+  $nodes as node()*
+) as item()* {
+  
+  for $text in $nodes//self::text()[not(parent::em)]
+  return 
+  let $lines := tokenize($text, "\n")
+  for $line in $lines
+  let $tokens := tokenize($line, " - ")
+  where normalize-space(string-join($tokens))
+  return 
+    <data>{
+      <name>{normalize-space($tokens[2])}</name>
+      ,
+      if (contains($tokens[1], "-"))
+      then (
+       <start>{
+         normalize-space(substring-before($tokens[1], "-"))
+       }</start>,
+       <stop>{normalize-space(substring-after($tokens[1], "-"))}</stop> 
+      )
+      else (
+        $tokens[1] ! (
+          <start>{normalize-space(.)}</start>, 
+          <stop>{normalize-space(.)}</stop>
+        )      
+      )
+    }</data>
+  
+};
