@@ -125,7 +125,7 @@ file:write($ms:DIR||"/marc21_json_schema.json",
   }</fn:array>, 
   map {
     "method": "json", "json": map {
-      "format": "basic", "indent": "yes", "escape-solidus": "yes"
+      "format": "basic", "indent": "yes", "escape-solidus": "no"
     }
   }
 )
