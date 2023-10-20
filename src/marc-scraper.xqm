@@ -1,4 +1,4 @@
-xquery version "3.1";
+xquery version "4.0";
 
 (:~ 
  : This module fetches and parses HTML documentation for the MARC 21 Authority, 
