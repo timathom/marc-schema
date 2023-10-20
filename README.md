@@ -7,7 +7,7 @@ In addition to the MARC Bibliographic Format, the Authority and Holdings Formats
 
 ## Dependencies
 * This project is an XQuery port of the original Python code.
-* The BaseX XML database and query processor (v10.8) was used (currently in beta; see [latest developer snapshot](https://files.basex.org/releases/latest/)).
+* The BaseX XML database and query processor was used (v10.8, currently in beta; see [latest developer snapshot](https://files.basex.org/releases/latest/)).
 
 ## Installation
 For detailed documentation about installing and using BaseX, see the [BaseX wiki](http://docs.basex.org/wiki/Main_Page).
