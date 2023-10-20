@@ -5,6 +5,8 @@ An extension of the [marc-json-schema](https://github.com/thisismattmiller/marc-
 
 In addition to the MARC Bibliographic Format, the Authority and Holdings Formats are now represented as well.
 
+Contributions and bug reports are welcome!
+
 ## Dependencies
 * This project is an XQuery port of the original Python code.
 * The BaseX XML database and query processor was used (v10.8, currently in beta; see [latest developer snapshot](https://files.basex.org/releases/latest/)).
