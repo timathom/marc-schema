@@ -1,7 +1,8 @@
 xquery version "3.1";
 
 (:~ 
- : This module fetches and parses MARC 21 Bibliographic Format to convert it to a standard schema
+ : This module fetches and parses HTML documentation for the MARC 21 Authority, 
+ : Bibliographic, and Holdings Formats and converts it to a standard schema
  : 
  : Module name: MARC Scraper Library Module
  : Module version: 0.1.0
