@@ -38,8 +38,8 @@ file:write($ms:DIR||"/marc21_json_schema.json",
                   return (
                     <fn:map>
                       <fn:string key="name">{$name}</fn:string>                        
-                      <fn:string key="start">{$start}</fn:string>                        
-                      <fn:string key="stop">{$stop}</fn:string>
+                      <fn:number key="start">{$start}</fn:number>  
+                      <fn:number key="stop">{$stop}</fn:number>
                     </fn:map>                   
                   )
                 }</fn:array>
@@ -58,8 +58,8 @@ file:write($ms:DIR||"/marc21_json_schema.json",
               return
                 <fn:map>
                   <fn:string key="name">{$name}</fn:string>
-                  <fn:string key="start">{$start}</fn:string>
-                  <fn:string key="stop">{$stop}</fn:string>
+                  <fn:number key="start">{$start}</fn:number>
+                  <fn:number key="stop">{$stop}</fn:number>
                   {$values}                    
                 </fn:map>                                      
           }</fn:array>
