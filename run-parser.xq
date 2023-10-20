@@ -1,0 +1,131 @@
+xquery version "3.1";
+
+import module namespace ms = "__marc-scraper__" at "src/marc-scraper.xqm";
+
+declare variable $ms:MFHD-GROUPS-2 := array {
+  map {"url": "https://www.loc.gov/marc/holdings/hd853855.html", "range": [853, 854, 855]},
+  map {"url": "https://www.loc.gov/marc/holdings/hd863865.html", "range": [863, 864, 865]},
+  map {"url": "https://www.loc.gov/marc/holdings/hd866868.html", "range": [866, 867, 868]},
+  map {"url": "https://www.loc.gov/marc/holdings/hd876878.html", "range": [876, 877, 878]}  
+};
+
+(: Path to the output directory :)
+declare variable $ms:DIR := "/Users/tt434/Dropbox/YUL/2023/marco/marc-schema";
+
+file:write($ms:DIR||"/marc21_json_schema.json",
+  <fn:array>{
+    let $parsed := ms:parse-docs()
+    for $p in $parsed
+    let $db := $p/data(@db)
+    return    
+      <fn:map>{      
+        <fn:map key="{$db}">{
+          for $field in $p/*
+          let $key := $field/data(@code)
+          let $name := $field/data(title)
+          let $fixed := if (exists($field/fixed)) {true()} else {false()}
+          let $positions := <fn:array key="positions">{
+            if ($field/positions/group)
+            then
+              for $group in $field/positions/group            
+              let $code := $group/data(@code)
+              return
+                <fn:array key="{$code}">{
+                  for $data in $group/data
+                  let $name := $data/data(name)
+                  let $start := xs:integer($data/start)
+                  let $stop := xs:integer($data/stop)               
+                  return (
+                    <fn:map>
+                      <fn:string key="name">{$name}</fn:string>                        
+                      <fn:string key="start">{$start}</fn:string>                        
+                      <fn:string key="stop">{$stop}</fn:string>
+                    </fn:map>                   
+                  )
+                }</fn:array>
+            else if ($field/data/positions)
+            then
+              for $data in $field/data
+              let $name := $data/data(name)           
+              let $start := xs:integer($data/positions/start)
+              let $stop := xs:integer($data/positions/stop)
+              let $values :=
+                <fn:map key="values">{
+                  for $entry in $data/values/entry[normalize-space(name)]                                        
+                  return
+                    <fn:string key="{$entry/data(code)}">{data($entry/data(name))}</fn:string>
+                }</fn:map>
+              return
+                <fn:map>
+                  <fn:string key="name">{$name}</fn:string>
+                  <fn:string key="start">{$start}</fn:string>
+                  <fn:string key="stop">{$stop}</fn:string>
+                  {$values}                    
+                </fn:map>                                      
+          }</fn:array>
+          let $repeatable := $field/data(repeat)
+          let $indicators := <fn:map key="indicators">{
+            if ($field/indicators/*)
+            then (
+              for $ind in $field/indicators/entry
+              return
+                <fn:map key="{$ind/@n}">
+                  <fn:string key="name">{$ind/data(name)}</fn:string>                    
+                  <fn:map key="values">{
+                    for $value in $ind/data
+                    return
+                      <fn:string key="{$value/key}">{$value/data(value)}</fn:string>
+                  }</fn:map>
+               </fn:map>
+            )
+            else ()
+          }</fn:map>              
+          let $subfields := <fn:map key="subfields">{             
+            for $sf in $field/subfields[1]/subfield[normalize-space(data/key)]/data
+            let $name := $sf/data(name)
+            let $repeat := $sf/data(repeat)
+            let $static := $sf/data(static)        
+            return
+              <fn:map key="{$sf/key}">
+                <fn:string key="name">{$name}</fn:string>
+                <fn:boolean key="repeatable">{
+                  if (exists($repeat)) {$repeat} else {false()}
+                }</fn:boolean>
+                <fn:boolean key="static">{
+                  if (exists($static)) {$static} else {false()}
+                }</fn:boolean>
+                {
+                  if ($sf/static-values)
+                  then <fn:map key="staticValues">{
+                    for $sv at $p in $sf/static-values/data
+                    let $key := 
+                      if (normalize-space($sv/key))
+                      then $sv/data(key)
+                      else $p - 1               
+                    let $name := $sv/data(name)
+                    return <fn:map key="{$key}">
+                      <fn:string key="name">{$name}</fn:string>
+                      <fn:string key="value">{$key}</fn:string>
+                    </fn:map>
+                  }</fn:map>
+                }
+              </fn:map>             
+            }</fn:map>         
+          return         
+            <fn:map key="{$key}">
+              <fn:boolean key="fixed">{$fixed}</fn:boolean>
+              <fn:string key="name">{$name}</fn:string>
+              {if ($positions/*) {$positions}}
+              {if ($indicators/*) {$indicators}}
+              {if ($subfields/*) {$subfields}}
+              <fn:boolean key="repeatable">{$repeatable}</fn:boolean>
+            </fn:map>
+          }</fn:map>            
+        }</fn:map>
+  }</fn:array>, 
+  map {
+    "method": "json", "json": map {
+      "format": "basic", "indent": "yes", "escape-solidus": "yes"
+    }
+  }
+)

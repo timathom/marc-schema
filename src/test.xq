@@ -9,10 +9,5 @@ declare variable $ms:MFHD-GROUPS-2 := array {
   map {"url": "https://www.loc.gov/marc/holdings/hd876878.html", "range": [876, 877, 878]}  
 };
 
-
-
-(: let $x := ms:parse-docs()
-for $t in $x
-where not($t/table)
-return $t :)
-ms:parse-docs()
+let $parsed := ms:parse-docs()
+return $parsed

@@ -54,7 +54,7 @@ declare variable $ms:HOLD := "marc-holdings-docs";
    
    db:create("marc-" || $format?name || "-docs", element { $format?abbrev } {
      let $base := 
-       "http://www.loc.gov/marc/" || $format?name || "/" || $format?abbrev
+       "https://www.loc.gov/marc/" || $format?name || "/" || $format?abbrev
      let $urls := (
        for $tag in (10 to 1000) ! format-number(., "000")
        return map { 
@@ -69,8 +69,9 @@ declare variable $ms:HOLD := "marc-holdings-docs";
      for $url in ($urls, $ms:MFHD-GROUPS?*)
      let $fetch :=
          http:send-request(<http:request method="get"/>, $url?url)
+     let $status := $fetch[1]/data(@status)
      return (
-       if ($fetch[1]/@status = "200")
+       if ($status = "200")
        then <data code="{
          if ($url?field)
          then $url?field
@@ -91,7 +92,7 @@ declare variable $ms:HOLD := "marc-holdings-docs";
        }</data>
        else <data code="{$url?field}" status="NA"/>
        ,
-       prof:void(trace($url))
+       prof:void(trace(string-join(($url?url, $status), ": ")))
      )       
    }, "data")
        
@@ -110,71 +111,78 @@ declare function ms:parse-docs() {
   for $db in $dbs
   let $data := db:get("marc-"||$db||"-docs")
   return (
-    for $doc in $data/*/data[@status = "200"][normalize-space(@code)]
-    let $h1 := string-join($doc//h1//text())    
-    return element {$db} {
-      attribute {"code"} {$doc/@code},
+    <data db="{$db}">{
       
-      ms:parse-title(normalize-space($h1)),
-      ms:parse-repeat($h1)
-      ,      
-      if ($db = "holdings" and $doc/@code = (
-        "853", 
-        "854", 
-        "855",
-        "863", 
-        "864", 
-        "865", 
-        "866",
-        "867", 
-        "868", 
-        "876", 
-        "877", 
-        "878"
-      ))
-      then (
-        let $code := $doc/data(@code)
-        let $doc := db:text("marc-"||$db||"-docs", $code)/..[self::range]/parent::data        
-        let $indicators := 
-          $doc//table[.//text() contains text "Indicator" using case sensitive]        
-        let $subfields := $doc//table[.//text() contains text "Subfield" using case sensitive]
-        return
-          ms:parse-mfhd-group-indicators($code, $indicators)
-      )
-      else
-        (: Process fixed fields :)
-        if (starts-with($doc/@code, "00") or $doc/@code = "leader")
-        then 
-          if ($doc/@code != "006")
-          then (                  
-            let $layout-1 := $doc//table[@class = "characterPositions"]
-            let $layout-2 := $doc//table[tr/td/strong = "Character Positions"]
-            return (
-              <fixed>true</fixed>,
-              if ((ms:parse-fixed-layout-1($layout-1) or ms:parse-fixed-layout-2($layout-2)))
-              then (
-                ms:parse-fixed-layout-1($layout-1),
-                ms:parse-fixed-layout-2($layout-2)
-              )
-              else <positions/>            
-            )
-          )
-          else if ($doc/@code = "006")
-          then ms:parse-006($doc//table[1])
-          else ()     
-        else (
-          (: Process data fields :)
-          
-          (: Process indicators :)
+      for $doc in $data/*/data[@status = "200"][normalize-space(@code)]
+      let $h1 := string-join($doc//h1//text())    
+      return element {$db} {
+        attribute {"code"} {$doc/@code},
+        
+        ms:parse-title(normalize-space($h1)),
+        ms:parse-repeat($h1)
+        ,      
+        if ($db = "holdings" and $doc/@code = (
+          "853", 
+          "854", 
+          "855",
+          "863", 
+          "864", 
+          "865", 
+          "866",
+          "867", 
+          "868", 
+          "876", 
+          "877", 
+          "878"
+        ))
+        then (
+          let $code := $doc/data(@code)
+          let $doc := db:text("marc-"||$db||"-docs", $code)/..[self::range]/parent::data        
           let $indicators := 
             $doc//table[.//text() contains text "Indicator" using case sensitive]        
           let $subfields := $doc//table[.//text() contains text "Subfield" using case sensitive]
           return (
-            ms:parse-indicators($indicators),
-            ms:parse-subfields($subfields)
+            ms:parse-mfhd-group-indicators($code, $indicators)
+            ,
+            ms:parse-mfhd-group-subfields($code, $subfields)
           )
+            
         )
-    }[normalize-space(@code)]
+        else
+          (: Process fixed fields :)
+          if (starts-with($doc/@code, "00") or $doc/@code = "leader")
+          then 
+            if ($doc/@code != "006")
+            then (                  
+              let $layout-1 := $doc//table[@class = "characterPositions"]
+              let $layout-2 := $doc//table[tr/td/strong = "Character Positions"]
+              return (
+                <fixed>true</fixed>,
+                if ((ms:parse-fixed-layout-1($layout-1) or ms:parse-fixed-layout-2($layout-2)))
+                then (
+                  ms:parse-fixed-layout-1($layout-1),
+                  ms:parse-fixed-layout-2($layout-2)
+                )
+                else <positions/>            
+              )
+            )
+            else if ($doc/@code = "006")
+            then ms:parse-006($doc//table[1])
+            else ()     
+          else (
+            (: Process data fields :)
+            
+            (: Process indicators :)
+            let $indicators := 
+              $doc//table[.//text() contains text "Indicator" using case sensitive]        
+            let $subfields := $doc//table[.//text() contains text "Subfield" using case sensitive]
+            return (
+              ms:parse-indicators($indicators),
+              ms:parse-subfields($subfields)
+            )
+          )
+      }[normalize-space(@code)]
+    }</data>
   )
    
 };
@@ -224,8 +232,11 @@ declare function ms:parse-fixed-layout-1(
   $layout-1 as element(table)*
 ) as item()* {
   
-  for $entry in $layout-1/tr/td[@colspan = "2"]
-  let $tokens := tokenize($entry/span/strong, " - ")
+  for $entry in $layout-1/tr/td
+  let $tokens := 
+    if ($entry[@colspan = "2"])
+    then tokenize($entry//strong, " - ") 
+    else ()
   return ms:parse-fixed-data-layout-1($entry, $tokens) 
  
 };
@@ -278,11 +289,11 @@ declare function ms:parse-fixed-data-layout-1(
           <entry>
             <code>{$tokens[1]}</code>
             <name>{normalize-space($tokens[2])}</name> 
-          </entry>         
+          </entry>
         )
       else ()
     }</values>
-  }</data>
+  }</data>[normalize-space(name)] (: => trace() :)
     
 };
 
@@ -295,13 +306,13 @@ declare function ms:parse-fixed-data-layout-2(
   $entry as element()*
 ) as item()* {
   
-  for tumbling window $w in $entry/strong/following-sibling::node()
+  for tumbling window $w in $entry/strong/(self::*[not(. = "Character Positions")]|following-sibling::node())
     start $s when true()
     end $e next $n when $n/self::strong
   where normalize-space(string-join($w))
   let $head :=    
     let $tokens := 
-      tokenize($w/self::strong, " - ")    
+      tokenize($w/self::strong, " - ")
     let $name := <name>{normalize-space($tokens[2])}</name>
     let $positions := <positions>{
       if (contains($tokens[1], "-"))
@@ -317,7 +328,7 @@ declare function ms:parse-fixed-data-layout-2(
   return <data>{
     $head, 
     <values>{     
-      for $text in $w//self::text()
+      for $text in $w//self::text()[not(parent::strong)]
       let $lines := tokenize($text, "\n")
       for $line in $lines
       let $tokens := tokenize($line, " - ")
@@ -454,36 +465,83 @@ declare function ms:parse-mfhd-group-indicators(
     
   <indicators>{    
     for $td at $p in $table//td
-    return
-      <entry n="{$p}">{        
-        for tumbling window $w in $td/node()
-        start $s when $s/self::em and (
-          contains($s/following-sibling::*[1][self::em], $code)
-            or
-          contains($s, $code)
-        )
-        end $e when (
-          $e/self::br[following-sibling::*[1][self::em]]/preceding-sibling::em[1] is $s/following-sibling::*[1][self::em]
-            or
-          $e/self::br[following-sibling::*[1][self::em]]/preceding-sibling::em[1] is $s
-        )
-        return (          
-          <name>{normalize-space(
-            if (contains($s, "["))
-            then substring-before($s, " [")
-            else $s
-          )}</name>
+    return      
+      <entry n="{$p}">{
+        let $ind-name := $td/em[1]
+        let $ind-vals := 
+          for $val in $td//text()[parent::td]
+          return 
+            if ($val/following-sibling::*[1][self::em] and contains($val/following-sibling::*[1][self::em], $code))
+            then $val
+            else if (not($val/following-sibling::*[1][self::em]))
+            then $val
+            else ()
+        return (
+          <name>{normalize-space($ind-name)}</name>
           ,
-          for $text in $w/self::text()
+          for $text in $ind-vals/self::text()
           let $tokens := tokenize($text, " - ")
           where every $t in $tokens satisfies normalize-space($t)
           return <data>
             <key>{normalize-space($tokens[1])}</key>
             <value>{normalize-space($tokens[2])}</value>
-          </data>      
-        )       
-      }</entry> 
+          </data> 
+        )
+        
+      }</entry>
   }</indicators>
+};
+
+declare function ms:parse-mfhd-group-subfields(
+  $code as xs:string,
+  $table as element(table)*
+) as element()* {
+    
+  <subfields>{    
+    for $td at $p in $table//td[*[1][self::em]]
+    for $sf in $td//text()[parent::td and (
+        (following-sibling::*[1][self::em] and contains(following-sibling::*[1][self::em], $code))
+          or
+        not(following-sibling::*[1][self::em])
+      )
+    ] 
+    return     
+       <subfield>{
+          let $repeat := 
+            if (contains(normalize-space($sf),  " (R"))
+            then <repeat>true</repeat> 
+            else <repeat>false</repeat>  
+          let $static :=              
+            <static>false</static>
+          let $tokens := normalize-space($sf) => tokenize(" - ") 
+          let $key := 
+            normalize-space(substring-after($tokens[1], "$")) 
+          let $value := (
+            if (contains(normalize-space($tokens[2]), " ("))
+            then substring-before(normalize-space($tokens[2]), " (") 
+            else normalize-space($tokens[2]) 
+          )
+          return <data>
+            <key>{$key}</key>
+            <name>{$value}</name>
+            {$repeat}
+            {$static}
+            {
+              if ($static/data() = "true")
+              then <static-values>{
+                for $text in $td/br/following-sibling::text()[1]
+                let $norm := normalize-space($text)
+                let $tokens := tokenize($norm, " - ") 
+                return <data>
+                  <key>{substring-after($tokens[1], "/")}</key>
+                  <name>{normalize-space($tokens[2])}</name> 
+                </data>
+              }</static-values>
+              else ()  
+            }            
+          </data>
+        }</subfield>             
+  }</subfields>
 };
 
 declare function ms:parse-subfields(
@@ -498,7 +556,7 @@ declare function ms:parse-subfields(
         for $td at $p in $table//td[ul[@class = "nomark"]]/ul/li
         return <subfield>{
           let $repeat := 
-            if (normalize-space($td/span) = "(R)")
+            if (contains(normalize-space($td), "(R)"))
             then <repeat>true</repeat>
             else <repeat>false</repeat>  
           let $static := 
@@ -508,7 +566,10 @@ declare function ms:parse-subfields(
           let $tokens := normalize-space($td/text()[1]) => tokenize(" - ")
           let $key := 
             normalize-space(substring-after($tokens[1], "$"))
-          let $value := normalize-space($tokens[2])
+          let $value := 
+            if (contains(normalize-space($tokens[2]), " ("))
+            then substring-before(normalize-space($tokens[2]), " (")
+            else normalize-space($tokens[2])          
           return <data>
             <key>{$key}</key>
             <name>{$value}</name>
