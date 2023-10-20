@@ -4,7 +4,7 @@ xquery version "3.1";
  : This module fetches and parses MARC 21 Bibliographic Format to convert it to a standard schema
  : 
  : Module name: MARC Scraper Library Module
- : Module version: 0.0.1
+ : Module version: 0.1.0
  : Date: June 29-October 20, 2023
  : License: Apache-2.0
  : XQuery specification: 3.1
