@@ -5,7 +5,7 @@ xquery version "3.1";
  : 
  : Module name: MARC Scraper Library Module
  : Module version: 0.0.1
- : Date: June 29, 2023
+ : Date: June 29-October 20, 2023
  : License: Apache-2.0
  : XQuery specification: 3.1
  : Module overview: Based on the marc-json-schema repo by @thisismattmiller
@@ -99,7 +99,7 @@ declare variable $ms:HOLD := "marc-holdings-docs";
 };
 
 (:~ 
- : Parses data from fixed field pages.
+ : Parses data from HTML pages.
  :
  :
  :
@@ -375,9 +375,6 @@ declare function ms:parse-006(
       }</group>      
   }</positions>
   return $positions
-   
-   
-   
     
 };
 
