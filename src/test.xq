@@ -10,4 +10,4 @@ declare variable $ms:MFHD-GROUPS-2 := array {
 };
 
 let $parsed := ms:parse-docs()
-return $parsed
+return $parsed//static[. = "true"]/../../../..

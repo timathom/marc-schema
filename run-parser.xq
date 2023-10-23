@@ -1,9 +1,9 @@
-xquery version "3.1";
+xquery version "4.0";
 
 import module namespace ms = "__marc-scraper__" at "src/marc-scraper.xqm";
 
 (: Path to the output directory :)
-declare variable $ms:DIR := "";
+declare variable $ms:DIR := "/Users/tt434/Dropbox/YUL/2023/marco/marc-schema";
 
 file:write($ms:DIR||"/marc21_json_schema.json",
   <fn:array>{
@@ -117,8 +117,8 @@ file:write($ms:DIR||"/marc21_json_schema.json",
         }</fn:map>
   }</fn:array>, 
   map {
-    "method": "json", "json": map {
-      "format": "basic", "indent": "yes", "escape-solidus": "no"
+    "method": "json", "escape-solidus": "no", "json": map {
+      "format": "basic", "indent": "yes"
     }
   }
 )

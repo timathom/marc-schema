@@ -1,4 +1,4 @@
-xquery version "3.1";
+xquery version "4.0";
 
 import module namespace ms = "__marc-scraper__" at "src/marc-scraper.xqm";
 
