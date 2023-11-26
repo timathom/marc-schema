@@ -5,7 +5,7 @@ import module namespace ms = "__marc-scraper__" at "src/marc-scraper.xqm";
 (: Path to the output directory :)
 declare variable $ms:DIR := "";
 
-file:write($ms:DIR||"/marc21_json_schema.json",
+file:write($ms:DIR||"marc21_json_schema.json",
   <fn:array>{
     let $parsed := ms:parse-docs()
     for $p in $parsed
