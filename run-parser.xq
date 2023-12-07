@@ -3,7 +3,7 @@ xquery version "4.0";
 import module namespace ms = "__marc-scraper__" at "src/marc-scraper.xqm";
 
 (: Path to the output directory :)
-declare variable $ms:DIR := "";
+declare variable $ms:DIR as xs:string external := "";
 
 file:write($ms:DIR||"marc21_json_schema.json",
   <fn:array>{
