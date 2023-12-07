@@ -30,7 +30,7 @@ file:write($ms:DIR||"marc21_json_schema.json",
                   let $stop := xs:integer($data/stop)               
                   return (
                     <fn:map>
-                      <fn:string key="name">{$name}</fn:string>                        
+                      <fn:string key="label">{$name}</fn:string>                        
                       <fn:number key="start">{$start}</fn:number>  
                       <fn:number key="stop">{$stop}</fn:number>
                     </fn:map>                   
@@ -43,14 +43,14 @@ file:write($ms:DIR||"marc21_json_schema.json",
               let $start := xs:integer($data/positions/start)
               let $stop := xs:integer($data/positions/stop)
               let $values :=
-                <fn:map key="values">{
+                <fn:map key="positions">{
                   for $entry in $data/values/entry[normalize-space(name)]                                        
                   return
                     <fn:string key="{$entry/data(code)}">{data($entry/data(name))}</fn:string>
                 }</fn:map>
               return
                 <fn:map>
-                  <fn:string key="name">{$name}</fn:string>
+                  <fn:string key="label">{$name}</fn:string>
                   <fn:number key="start">{$start}</fn:number>
                   <fn:number key="stop">{$stop}</fn:number>
                   {$values}                    
@@ -63,8 +63,8 @@ file:write($ms:DIR||"marc21_json_schema.json",
               for $ind in $field/indicators/entry
               return
                 <fn:map key="{$ind/@n}">
-                  <fn:string key="name">{$ind/data(name)}</fn:string>                    
-                  <fn:map key="values">{
+                  <fn:string key="label">{$ind/data(name)}</fn:string>                    
+                  <fn:map key="codes">{
                     for $value in $ind/data
                     return
                       <fn:string key="{$value/key}">{$value/data(value)}</fn:string>
@@ -80,7 +80,7 @@ file:write($ms:DIR||"marc21_json_schema.json",
             let $static := $sf/data(static)        
             return
               <fn:map key="{$sf/key}">
-                <fn:string key="name">{$name}</fn:string>
+                <fn:string key="label">{$name}</fn:string>
                 <fn:boolean key="repeatable">{
                   if (exists($repeat)) {$repeat} else {false()}
                 }</fn:boolean>
@@ -89,7 +89,7 @@ file:write($ms:DIR||"marc21_json_schema.json",
                 }</fn:boolean>
                 {
                   if ($sf/static-values)
-                  then <fn:map key="staticValues">{
+                  then <fn:map key="codes">{
                     for $sv at $p in $sf/static-values/data
                     let $key := 
                       if (normalize-space($sv/key))
@@ -97,8 +97,8 @@ file:write($ms:DIR||"marc21_json_schema.json",
                       else $p - 1               
                     let $name := $sv/data(name)
                     return <fn:map key="{$key}">
-                      <fn:string key="name">{$name}</fn:string>
-                      <fn:string key="value">{$key}</fn:string>
+                      <fn:string key="label">{$name}</fn:string>
+                      <fn:string key="code">{$key}</fn:string>
                     </fn:map>
                   }</fn:map>
                 }
@@ -107,7 +107,7 @@ file:write($ms:DIR||"marc21_json_schema.json",
           return         
             <fn:map key="{$key}">
               <fn:boolean key="fixed">{$fixed}</fn:boolean>
-              <fn:string key="name">{$name}</fn:string>
+              <fn:string key="label">{$name}</fn:string>
               {if ($positions/*) {$positions}}
               {if ($indicators/*) {$indicators}}
               {if ($subfields/*) {$subfields}}
