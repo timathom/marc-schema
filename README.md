@@ -21,7 +21,7 @@ For detailed documentation about installing and using BaseX, see the [BaseX wiki
   ```
   bin/basex -c "RUN marc-schema/run-scraper.xq; RUN marc-schema/run-parser.xq"
   ```
-* Optionally, the value of an absolute directory path can be passed on the command line to the `ms:DIR` variable:
+* Optionally, the value of a directory path can be passed on the command line to the `ms:DIR` variable:
   ```
   bin/basex -Q marc-schema/run-scraper.xq -b ms:DIR="/Users/Abc/Desktop/" -Q marc-schema/run-parser.xq
   ```
