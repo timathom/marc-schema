@@ -17,3 +17,12 @@ For detailed documentation about installing and using BaseX, see the [BaseX wiki
 * Once BaseX has been downloaded, launch the BaseX GUI.
 * `run-scraper.xq` will fetch the HTML pages for the MARC standards documentation and save them in a BaseX database. 
 * `run-parser.xq` will generate the JSON file and write it to a local directory.
+* From the BaseX installation directory, the queries can be run in a single command:
+  ```
+  bin/basex -c "RUN marc-schema/run-scraper.xq; RUN marc-schema/run-parser.xq"
+  ```
+* Optionally, the value of an absolute directory path can be passed on the command line to the `ms:DIR` variable:
+  ```
+  bin/basex -Q marc-schema/run-scraper.xq -b ms:DIR="/Users/tt434/Desktop/" -Q marc-schema/run-parser.xq
+  ```
+  
