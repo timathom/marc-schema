@@ -11,12 +11,15 @@ file:write($ms:DIR||"marc21_json_schema.json",
     for $p in $parsed
     let $db := $p/data(@db)
     return    
-      <fn:map>{      
-        <fn:map key="{$db}">{
+      <fn:map>
+        <fn:string key="title">MARC21 {$db} format</fn:string>
+        <fn:string key="url">https://www.loc.gov/marc/{$db}/</fn:string>
+        <fn:string key="language">en</fn:string>
+        <fn:string key="family">marc</fn:string>
+        <fn:map key="fields">{
           for $field in $p/*
-          let $key := $field/data(@code)
+          let $key := if ($field/data(@code) = "leader") then "LDR" else $field/data(@code)
           let $name := $field/data(title)
-          let $fixed := if (exists($field/fixed)) {true()} else {false()}
           let $positions := <fn:array key="positions">{
             if ($field/positions/group)
             then
@@ -27,12 +30,12 @@ file:write($ms:DIR||"marc21_json_schema.json",
                   for $data in $group/data
                   let $name := $data/data(name)
                   let $start := xs:integer($data/start)
-                  let $stop := xs:integer($data/stop)               
+                  let $end := xs:integer($data/stop)               
                   return (
                     <fn:map>
                       <fn:string key="label">{$name}</fn:string>                        
                       <fn:number key="start">{$start}</fn:number>  
-                      <fn:number key="stop">{$stop}</fn:number>
+                      <fn:number key="end">{$end}</fn:number>
                     </fn:map>                   
                   )
                 }</fn:array>
@@ -41,9 +44,9 @@ file:write($ms:DIR||"marc21_json_schema.json",
               for $data in $field/data
               let $name := $data/data(name)           
               let $start := xs:integer($data/positions/start)
-              let $stop := xs:integer($data/positions/stop)
+              let $end := xs:integer($data/positions/stop)
               let $values :=
-                <fn:map key="positions">{
+                <fn:map key="codes">{
                   for $entry in $data/values/entry[normalize-space(name)]                                        
                   return
                     <fn:string key="{$entry/data(code)}">{data($entry/data(name))}</fn:string>
@@ -52,7 +55,7 @@ file:write($ms:DIR||"marc21_json_schema.json",
                 <fn:map>
                   <fn:string key="label">{$name}</fn:string>
                   <fn:number key="start">{$start}</fn:number>
-                  <fn:number key="stop">{$stop}</fn:number>
+                  <fn:number key="end">{$end}</fn:number>
                   {$values}                    
                 </fn:map>                                      
           }</fn:array>
@@ -77,15 +80,11 @@ file:write($ms:DIR||"marc21_json_schema.json",
             for $sf in $field/subfields[1]/subfield[normalize-space(data/key)]/data
             let $name := $sf/data(name)
             let $repeat := $sf/data(repeat)
-            let $static := $sf/data(static)        
             return
               <fn:map key="{$sf/key}">
                 <fn:string key="label">{$name}</fn:string>
                 <fn:boolean key="repeatable">{
                   if (exists($repeat)) {$repeat} else {false()}
-                }</fn:boolean>
-                <fn:boolean key="static">{
-                  if (exists($static)) {$static} else {false()}
                 }</fn:boolean>
                 {
                   if ($sf/static-values)
@@ -106,7 +105,6 @@ file:write($ms:DIR||"marc21_json_schema.json",
             }</fn:map>         
           return         
             <fn:map key="{$key}">
-              <fn:boolean key="fixed">{$fixed}</fn:boolean>
               <fn:string key="label">{$name}</fn:string>
               {if ($positions/*) {$positions}}
               {if ($indicators/*) {$indicators}}
@@ -114,7 +112,7 @@ file:write($ms:DIR||"marc21_json_schema.json",
               <fn:boolean key="repeatable">{$repeatable}</fn:boolean>
             </fn:map>
           }</fn:map>            
-        }</fn:map>
+        </fn:map>
   }</fn:array>, 
   map {
     "method": "json", "escape-solidus": "no", "json": map {
