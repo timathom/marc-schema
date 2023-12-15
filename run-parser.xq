@@ -17,7 +17,7 @@ for $p in ms:parse-docs()
           for $field in $p/*
           let $key := if ($field/data(@code) = "leader") then "LDR" else $field/data(@code)
           let $name := $field/data(title)
-          let $positions := <fn:array key="positions">{
+          let $positions := <fn:map key="positions">{
             if ($field/positions/group)
             then
               for $group in $field/positions/group            
@@ -29,7 +29,7 @@ for $p in ms:parse-docs()
                   let $start := xs:integer($data/start)
                   let $end := xs:integer($data/stop)               
                   return (
-                    <fn:map>
+                    <fn:map key="{$start}-{$end}">
                       <fn:string key="label">{$name}</fn:string>                        
                       <fn:number key="start">{$start}</fn:number>  
                       <fn:number key="end">{$end}</fn:number>
@@ -49,20 +49,20 @@ for $p in ms:parse-docs()
                     <fn:string key="{$entry/data(code)}">{data($entry/data(name))}</fn:string>
                 }</fn:map>
               return
-                <fn:map>
+                <fn:map key="{$start}-{$end}">
                   <fn:string key="label">{$name}</fn:string>
                   <fn:number key="start">{$start}</fn:number>
                   <fn:number key="end">{$end}</fn:number>
                   {$values}                    
                 </fn:map>                                      
-          }</fn:array>
+          }</fn:map>
           let $repeatable := $field/data(repeat)
           let $indicators := <fn:map key="indicators">{
             if ($field/indicators/*)
             then (
               for $ind in $field/indicators/entry
               return
-                <fn:map key="{$ind/@n}">
+                <fn:map key="indicator{$ind/@n}">
                   <fn:string key="label">{$ind/data(name)}</fn:string>                    
                   <fn:map key="codes">{
                     for $value in $ind/data
@@ -104,7 +104,7 @@ for $p in ms:parse-docs()
             <fn:map key="{$key}">
               <fn:string key="label">{$name}</fn:string>
               {if ($positions/*) {$positions}}
-              {if ($indicators/*) {$indicators}}
+              {if ($indicators/*) {$indicators/*}}
               {if ($subfields/*) {$subfields}}
               <fn:boolean key="repeatable">{$repeatable}</fn:boolean>
             </fn:map>
