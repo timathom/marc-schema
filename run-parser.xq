@@ -5,12 +5,9 @@ import module namespace ms = "__marc-scraper__" at "src/marc-scraper.xqm";
 (: Path to the output directory :)
 declare variable $ms:DIR as xs:string external := "";
 
-file:write($ms:DIR||"marc21_json_schema.json",
-  <fn:array>{
-    let $parsed := ms:parse-docs()
-    for $p in $parsed
-    let $db := $p/data(@db)
-    return    
+for $p in ms:parse-docs()
+  let $db := $p/data(@db)
+  return file:write($ms:DIR||"marc21_"||$db||"_schema.json",
       <fn:map>
         <fn:string key="title">MARC21 {$db} format</fn:string>
         <fn:string key="url">https://www.loc.gov/marc/{$db}/</fn:string>
@@ -113,7 +110,7 @@ file:write($ms:DIR||"marc21_json_schema.json",
             </fn:map>
           }</fn:map>            
         </fn:map>
-  }</fn:array>, 
+  , 
   map {
     "method": "json", "escape-solidus": "no", "json": map {
       "format": "basic", "indent": "yes"
