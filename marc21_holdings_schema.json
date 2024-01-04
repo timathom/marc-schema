@@ -1,0 +1,2969 @@
+{
+  "title":"MARC21 holdings format",
+  "url":"https:\/\/www.loc.gov\/marc\/holdings\/",
+  "language":"en",
+  "family":"marc",
+  "fields":{
+    "010":{
+      "label":"Library of Congress Control Number",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"LC control number",
+          "repeatable":false
+        },
+        "b":{
+          "label":"NUCMC control number",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Canceled or invalid LC control number",
+          "repeatable":true
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":false
+    },
+    "014":{
+      "label":"Linkage Number",
+      "indicator1":{
+        "label":"Type of linkage number",
+        "codes":{
+          "0":"Holdings record number",
+          "1":"Bibliographic record number"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Linkage number",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Source of number",
+          "repeatable":false
+        },
+        "z":{
+          "label":"Canceled or invalid linkage number",
+          "repeatable":true
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        }
+      },
+      "repeatable":true
+    },
+    "016":{
+      "label":"National Bibliographic Agency Control Number",
+      "indicator1":{
+        "label":"National bibliographic agency",
+        "codes":{
+          " ":"Library and Archives Canada",
+          "7":"Source specified in subfield $2"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Record control number",
+          "repeatable":false
+        },
+        "z":{
+          "label":"Canceled or invalid control number",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Source",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "017":{
+      "label":"Copyright or Legal Deposit Number",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Display constant controller",
+        "codes":{
+          " ":"Copyright or legal deposit number",
+          "8":"No display constant generated"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Copyright or legal deposit number",
+          "repeatable":true
+        },
+        "b":{
+          "label":"Assigning agency",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Date",
+          "repeatable":false
+        },
+        "z":{
+          "label":"Canceled\/invalid copyright or legal deposit number",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Source",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        }
+      },
+      "repeatable":true
+    },
+    "020":{
+      "label":"International Standard Book Number",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"International Standard Book Number",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Terms of availability",
+          "repeatable":false
+        },
+        "q":{
+          "label":"Qualifying information",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Canceled\/invalid ISBN",
+          "repeatable":true
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "022":{
+      "label":"International Standard Serial Number",
+      "indicator1":{
+        "label":"Level of international interest",
+        "codes":{
+          " ":"No level specified",
+          "0":"Continuing resource of international interest",
+          "1":"Continuing resource not of international interest"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"International Standard Serial Number",
+          "repeatable":false
+        },
+        "y":{
+          "label":"Incorrect ISSN",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Canceled ISSN",
+          "repeatable":true
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "023":{
+      "label":"Cluster ISSN",
+      "indicator1":{
+        "label":"Type of Cluster ISSN",
+        "codes":{
+          "0":"ISSN-L",
+          "1":"ISSN-H"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Cluster ISSN",
+          "repeatable":false
+        },
+        "y":{
+          "label":"Incorrect Cluster ISSN",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Canceled Cluster ISSN",
+          "repeatable":true
+        },
+        "0":{
+          "label":"Authority record control number or standard number",
+          "repeatable":false
+        },
+        "1":{
+          "label":"Real World Object URI",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Source",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "024":{
+      "label":"Other Standard Identifier",
+      "indicator1":{
+        "label":"Type of standard number or code",
+        "codes":{
+          "0":"International Standard Recording Code",
+          "1":"Universal Product Code",
+          "2":"International Standard Music Number",
+          "3":"International Article Number",
+          "4":"Serial Item and Contribution Identifier",
+          "7":"Source specified in subfield $2",
+          "8":"Unspecified type of standard number or code"
+        }
+      },
+      "indicator2":{
+        "label":"Difference indicator",
+        "codes":{
+          " ":"No information provided",
+          "0":"No difference",
+          "1":"Difference"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Standard number or code",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Terms of availability",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Additional codes following the standard number or code",
+          "repeatable":false
+        },
+        "q":{
+          "label":"Qualifying information",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Canceled\/invalid standard number or code",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Source of number or code",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "027":{
+      "label":"Standard Technical Report Number",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Standard Technical Report Number",
+          "repeatable":false
+        },
+        "q":{
+          "label":"Qualifying information",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Canceled\/invalid STRN",
+          "repeatable":true
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "030":{
+      "label":"CODEN Designation",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"CODEN",
+          "repeatable":false
+        },
+        "z":{
+          "label":"Canceled\/invalid CODEN",
+          "repeatable":true
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":false
+    },
+    "035":{
+      "label":"System Control Number",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"System control number",
+          "repeatable":false
+        },
+        "z":{
+          "label":"Canceled or invalid control number",
+          "repeatable":true
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "040":{
+      "label":"Record Source",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Original cataloging agency",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Language of cataloging",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Transcribing agency",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Modifying agency",
+          "repeatable":true
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":false
+    },
+    "066":{
+      "label":"Character Sets Present",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Primary G0 character set",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Primary G1 character set",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Alternate G0 or G1 character set",
+          "repeatable":true
+        }
+      },
+      "repeatable":false
+    },
+    "337":{
+      "label":"Media Type",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Media type term",
+          "repeatable":true
+        },
+        "b":{
+          "label":"Media type code",
+          "repeatable":true
+        },
+        "0":{
+          "label":"Authority record control number or standard number",
+          "repeatable":true
+        },
+        "1":{
+          "label":"Real World Object URI",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Source",
+          "repeatable":false
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "338":{
+      "label":"Carrier Type",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Carrier type term",
+          "repeatable":true
+        },
+        "b":{
+          "label":"Carrier type code",
+          "repeatable":true
+        },
+        "0":{
+          "label":"Authority record control number or standard number",
+          "repeatable":true
+        },
+        "1":{
+          "label":"Real World Object URI",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Source",
+          "repeatable":false
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "347":{
+      "label":"Digital File Characteristics",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"File type",
+          "repeatable":true
+        },
+        "b":{
+          "label":"Encoding format",
+          "repeatable":true
+        },
+        "c":{
+          "label":"File size",
+          "repeatable":true
+        },
+        "d":{
+          "label":"Resolution",
+          "repeatable":true
+        },
+        "e":{
+          "label":"Regional encoding",
+          "repeatable":true
+        },
+        "f":{
+          "label":"Encoded bitrate",
+          "repeatable":true
+        },
+        "0":{
+          "label":"Authority record control number or standard number",
+          "repeatable":true
+        },
+        "1":{
+          "label":"Real World Object URI",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Source",
+          "repeatable":false
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "361":{
+      "label":"Structured Ownership and Custodial History",
+      "indicator1":{
+        "label":"Privacy",
+        "codes":{
+          " ":"No information provided",
+          "0":"Private",
+          "1":"Not private"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Name",
+          "repeatable":false
+        },
+        "f":{
+          "label":"Ownership and custodial history evidence term",
+          "repeatable":true
+        },
+        "k":{
+          "label":"Formatted date",
+          "repeatable":false
+        },
+        "l":{
+          "label":"Date",
+          "repeatable":false
+        },
+        "o":{
+          "label":"Type of ownership and custodial history information",
+          "repeatable":true
+        },
+        "s":{
+          "label":"Shelf mark of copy described",
+          "repeatable":false
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "x":{
+          "label":"Nonpublic note",
+          "repeatable":true
+        },
+        "y":{
+          "label":"Identifier of the copy described",
+          "repeatable":false
+        },
+        "z":{
+          "label":"Public note",
+          "repeatable":true
+        },
+        "0":{
+          "label":"Authority record control number or standard number",
+          "repeatable":true
+        },
+        "1":{
+          "label":"Real World Object URI",
+          "repeatable":true
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "5":{
+          "label":"Institution to which field applies",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "7":{
+          "label":"Data provenance",
+          "repeatable":true
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "506":{
+      "label":"Restrictions on Access Note",
+      "indicator1":{
+        "label":"Restriction",
+        "codes":{
+          " ":"No information provided",
+          "0":"No restrictions",
+          "1":"Restrictions apply"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Terms governing access",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Jurisdiction",
+          "repeatable":true
+        },
+        "c":{
+          "label":"Physical access provisions",
+          "repeatable":true
+        },
+        "d":{
+          "label":"Authorized users",
+          "repeatable":true
+        },
+        "e":{
+          "label":"Authorization",
+          "repeatable":true
+        },
+        "f":{
+          "label":"Standardized terminology for access restriction",
+          "repeatable":true
+        },
+        "g":{
+          "label":"Availability date",
+          "repeatable":true
+        },
+        "q":{
+          "label":"Supplying agency",
+          "repeatable":false
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Source of term",
+          "repeatable":false
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "5":{
+          "label":"Institution to which field applies",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "538":{
+      "label":"System Details Note",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"System details note",
+          "repeatable":false
+        },
+        "i":{
+          "label":"Display text",
+          "repeatable":false
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "5":{
+          "label":"Institution to which field applies",
+          "repeatable":true
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "541":{
+      "label":"Immediate Source of Acquisition Note",
+      "indicator1":{
+        "label":"Privacy",
+        "codes":{
+          " ":"No information provided",
+          "0":"Private",
+          "1":"Not private"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Source of acquisition",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Address",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Method of acquisition",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Date of acquisition",
+          "repeatable":false
+        },
+        "e":{
+          "label":"Accession number",
+          "repeatable":false
+        },
+        "f":{
+          "label":"Owner",
+          "repeatable":false
+        },
+        "h":{
+          "label":"Purchase price",
+          "repeatable":false
+        },
+        "n":{
+          "label":"Extent",
+          "repeatable":true
+        },
+        "o":{
+          "label":"Type of unit",
+          "repeatable":true
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "5":{
+          "label":"Institution to which field applies",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "561":{
+      "label":"Ownership and Custodial History",
+      "indicator1":{
+        "label":"Privacy",
+        "codes":{
+          " ":"No information provided",
+          "0":"Private",
+          "1":"Not private"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"History",
+          "repeatable":false
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "5":{
+          "label":"Institution to which field applies",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "562":{
+      "label":"Copy and Version Identification Note",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Identifying markings",
+          "repeatable":true
+        },
+        "b":{
+          "label":"Copy identification",
+          "repeatable":true
+        },
+        "c":{
+          "label":"Version identification",
+          "repeatable":true
+        },
+        "d":{
+          "label":"Presentation format",
+          "repeatable":true
+        },
+        "e":{
+          "label":"Number of copies",
+          "repeatable":true
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "5":{
+          "label":"Institution to which field applies",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "563":{
+      "label":"Binding Information",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Binding note",
+          "repeatable":false
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "5":{
+          "label":"Institution to which field applies",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "583":{
+      "label":"Action Note",
+      "indicator1":{
+        "label":"Privacy",
+        "codes":{
+          " ":"No information provided",
+          "0":"Private",
+          "1":"Not private"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Action",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Action identification",
+          "repeatable":true
+        },
+        "c":{
+          "label":"Time\/date of action",
+          "repeatable":true
+        },
+        "d":{
+          "label":"Action interval",
+          "repeatable":true
+        },
+        "e":{
+          "label":"Contingency for action",
+          "repeatable":true
+        },
+        "f":{
+          "label":"Authorization",
+          "repeatable":true
+        },
+        "h":{
+          "label":"Jurisdiction",
+          "repeatable":true
+        },
+        "i":{
+          "label":"Method of action",
+          "repeatable":true
+        },
+        "j":{
+          "label":"Site of action",
+          "repeatable":true
+        },
+        "k":{
+          "label":"Action agent",
+          "repeatable":true
+        },
+        "l":{
+          "label":"Status",
+          "repeatable":true
+        },
+        "n":{
+          "label":"Extent",
+          "repeatable":true
+        },
+        "o":{
+          "label":"Type of unit",
+          "repeatable":true
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "x":{
+          "label":"Nonpublic note",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Public note",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Source of term",
+          "repeatable":false
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "5":{
+          "label":"Institution to which field applies",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "841":{
+      "label":"Holdings Coded Data Values",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Type of record",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Fixed-length data elements",
+          "repeatable":false
+        },
+        "e":{
+          "label":"Encoding level",
+          "repeatable":false
+        }
+      },
+      "repeatable":false
+    },
+    "842":{
+      "label":"Textual Physical Form Designator",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Textual physical form designator",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":false
+    },
+    "843":{
+      "label":"Reproduction Note",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Type of reproduction",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Place of reproduction",
+          "repeatable":true
+        },
+        "c":{
+          "label":"Agency responsible for reproduction",
+          "repeatable":true
+        },
+        "d":{
+          "label":"Date of reproduction",
+          "repeatable":false
+        },
+        "e":{
+          "label":"Physical description of reproduction",
+          "repeatable":false
+        },
+        "f":{
+          "label":"Series statement of reproduction",
+          "repeatable":true
+        },
+        "m":{
+          "label":"Dates of publication and\/or sequential designation of issues reproduced",
+          "repeatable":true
+        },
+        "n":{
+          "label":"Note about reproduction",
+          "repeatable":true
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "5":{
+          "label":"Institution to which field applies",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "7":{
+          "label":"Fixed-length data elements of reproduction",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "844":{
+      "label":"Name of Unit",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Name of unit",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":false
+    },
+    "845":{
+      "label":"Terms Governing Use and Reproduction Note",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Terms governing use and reproduction",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Jurisdiction",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Authorization",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Authorized users",
+          "repeatable":false
+        },
+        "f":{
+          "label":"Use and reproduction rights",
+          "repeatable":true
+        },
+        "g":{
+          "label":"Availability date",
+          "repeatable":true
+        },
+        "q":{
+          "label":"Supplying agency",
+          "repeatable":false
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Source of term",
+          "repeatable":false
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "5":{
+          "label":"Institution to which field applies",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "852":{
+      "label":"Location",
+      "indicator1":{
+        "label":"Shelving scheme",
+        "codes":{
+          " ":"No information provided",
+          "0":"Library of Congress classification",
+          "1":"Dewey Decimal classification",
+          "2":"National Library of Medicine classification",
+          "3":"Superintendent of Documents classification",
+          "4":"Shelving control number",
+          "5":"Title",
+          "6":"Shelved separately",
+          "7":"Source specified in subfield $2",
+          "8":"Other scheme"
+        }
+      },
+      "indicator2":{
+        "label":"Shelving order",
+        "codes":{
+          " ":"No information provided",
+          "0":"Not enumeration",
+          "1":"Primary enumeration",
+          "2":"Alternative enumeration"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Location",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Sublocation or collection",
+          "repeatable":true
+        },
+        "c":{
+          "label":"Shelving location",
+          "repeatable":true
+        },
+        "d":{
+          "label":"Former shelving location",
+          "repeatable":true
+        },
+        "e":{
+          "label":"Address",
+          "repeatable":true
+        },
+        "f":{
+          "label":"Coded location qualifier",
+          "repeatable":true
+        },
+        "g":{
+          "label":"Non-coded location qualifier",
+          "repeatable":true
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "h":{
+          "label":"Classification part",
+          "repeatable":false
+        },
+        "i":{
+          "label":"Item part",
+          "repeatable":true
+        },
+        "j":{
+          "label":"Shelving control number",
+          "repeatable":false
+        },
+        "k":{
+          "label":"Call number prefix",
+          "repeatable":true
+        },
+        "l":{
+          "label":"Shelving form of title",
+          "repeatable":false
+        },
+        "m":{
+          "label":"Call number suffix",
+          "repeatable":true
+        },
+        "n":{
+          "label":"Country code",
+          "repeatable":false
+        },
+        "s":{
+          "label":"Copyright article-fee code",
+          "repeatable":true
+        },
+        "t":{
+          "label":"Copy number",
+          "repeatable":false
+        },
+        "p":{
+          "label":"Piece designation",
+          "repeatable":false
+        },
+        "q":{
+          "label":"Piece physical condition",
+          "repeatable":false
+        },
+        "x":{
+          "label":"Nonpublic note",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Public note",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Source of classification or shelving scheme",
+          "repeatable":false
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Sequence number",
+          "repeatable":false
+        }
+      },
+      "repeatable":true
+    },
+    "853":{
+      "label":"Captions and Pattern-Basic Bibliographic Unit",
+      "indicator1":{
+        "label":"Compressibility and expandability",
+        "codes":{
+          "0":"Cannot compress or expand",
+          "1":"Can compress but not expand",
+          "2":"Can compress or expand",
+          "3":"Unknown",
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Caption evaluation",
+        "codes":{
+          "0":"Captions verified; all levels present",
+          "1":"Captions verified; all levels may not be present",
+          "2":"Captions unverified; all levels present",
+          "3":"Captions unverified; all levels may not be present",
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"First level of enumeration",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Second level of enumeration",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Third level of enumeration",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Fourth level of enumeration",
+          "repeatable":false
+        },
+        "e":{
+          "label":"Fifth level of enumeration",
+          "repeatable":false
+        },
+        "f":{
+          "label":"Sixth level of enumeration",
+          "repeatable":false
+        },
+        "g":{
+          "label":"Alternative numbering scheme, first level of enumeration",
+          "repeatable":false
+        },
+        "h":{
+          "label":"Alternative numbering scheme, second level of enumeration",
+          "repeatable":false
+        },
+        "i":{
+          "label":"First level of chronology",
+          "repeatable":false
+        },
+        "j":{
+          "label":"Second level of chronology",
+          "repeatable":false
+        },
+        "k":{
+          "label":"Third level of chronology",
+          "repeatable":false
+        },
+        "l":{
+          "label":"Fourth level of chronology",
+          "repeatable":false
+        },
+        "m":{
+          "label":"Alternative numbering scheme, chronology",
+          "repeatable":false
+        },
+        "n":{
+          "label":"Pattern note",
+          "repeatable":false
+        },
+        "p":{
+          "label":"Number of pieces per issuance",
+          "repeatable":false
+        },
+        "u":{
+          "label":"Bibliographic units per next higher level",
+          "repeatable":true
+        },
+        "v":{
+          "label":"Numbering continuity",
+          "repeatable":true
+        },
+        "w":{
+          "label":"Frequency",
+          "repeatable":false
+        },
+        "x":{
+          "label":"Calendar change",
+          "repeatable":false
+        },
+        "y":{
+          "label":"Regularity pattern",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Numbering scheme",
+          "repeatable":true
+        },
+        "o":{
+          "label":"Type of unit",
+          "repeatable":true
+        },
+        "t":{
+          "label":"Copy",
+          "repeatable":false
+        },
+        "2":{
+          "label":"Source of caption abbreviation",
+          "repeatable":true
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":false
+        }
+      },
+      "repeatable":true
+    },
+    "854":{
+      "label":"Captions and Pattern-Supplementary Material",
+      "indicator1":{
+        "label":"Compressibility and expandability",
+        "codes":{
+          "0":"Cannot compress or expand",
+          "1":"Can compress but not expand",
+          "2":"Can compress or expand",
+          "3":"Unknown",
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Caption evaluation",
+        "codes":{
+          "0":"Captions verified; all levels present",
+          "1":"Captions verified; all levels may not be present",
+          "2":"Captions unverified; all levels present",
+          "3":"Captions unverified; all levels may not be present",
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"First level of enumeration",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Second level of enumeration",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Third level of enumeration",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Fourth level of enumeration",
+          "repeatable":false
+        },
+        "e":{
+          "label":"Fifth level of enumeration",
+          "repeatable":false
+        },
+        "f":{
+          "label":"Sixth level of enumeration",
+          "repeatable":false
+        },
+        "g":{
+          "label":"Alternative numbering scheme, first level of enumeration",
+          "repeatable":false
+        },
+        "h":{
+          "label":"Alternative numbering scheme, second level of enumeration",
+          "repeatable":false
+        },
+        "i":{
+          "label":"First level of chronology",
+          "repeatable":false
+        },
+        "j":{
+          "label":"Second level of chronology",
+          "repeatable":false
+        },
+        "k":{
+          "label":"Third level of chronology",
+          "repeatable":false
+        },
+        "l":{
+          "label":"Fourth level of chronology",
+          "repeatable":false
+        },
+        "m":{
+          "label":"Alternative numbering scheme, chronology",
+          "repeatable":false
+        },
+        "n":{
+          "label":"Pattern note",
+          "repeatable":false
+        },
+        "p":{
+          "label":"Number of pieces per issuance",
+          "repeatable":false
+        },
+        "u":{
+          "label":"Bibliographic units per next higher level",
+          "repeatable":true
+        },
+        "v":{
+          "label":"Numbering continuity",
+          "repeatable":true
+        },
+        "w":{
+          "label":"Frequency",
+          "repeatable":false
+        },
+        "x":{
+          "label":"Calendar change",
+          "repeatable":false
+        },
+        "y":{
+          "label":"Regularity pattern",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Numbering scheme",
+          "repeatable":true
+        },
+        "o":{
+          "label":"Type of unit",
+          "repeatable":true
+        },
+        "t":{
+          "label":"Copy",
+          "repeatable":false
+        },
+        "2":{
+          "label":"Source of caption abbreviation",
+          "repeatable":true
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":false
+        }
+      },
+      "repeatable":true
+    },
+    "855":{
+      "label":"Captions and Pattern-Indexes",
+      "indicator1":{
+        "label":"Compressibility and expandability",
+        "codes":{
+          "0":"Cannot compress or expand",
+          "1":"Can compress but not expand",
+          "2":"Can compress or expand",
+          "3":"Unknown",
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Caption evaluation",
+        "codes":{
+          "0":"Captions verified; all levels present",
+          "1":"Captions verified; all levels may not be present",
+          "2":"Captions unverified; all levels present",
+          "3":"Captions unverified; all levels may not be present",
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"First level of enumeration",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Second level of enumeration",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Third level of enumeration",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Fourth level of enumeration",
+          "repeatable":false
+        },
+        "e":{
+          "label":"Fifth level of enumeration",
+          "repeatable":false
+        },
+        "f":{
+          "label":"Sixth level of enumeration",
+          "repeatable":false
+        },
+        "g":{
+          "label":"Alternative numbering scheme, first level of enumeration",
+          "repeatable":false
+        },
+        "h":{
+          "label":"Alternative numbering scheme, second level of enumeration",
+          "repeatable":false
+        },
+        "i":{
+          "label":"First level of chronology",
+          "repeatable":false
+        },
+        "j":{
+          "label":"Second level of chronology",
+          "repeatable":false
+        },
+        "k":{
+          "label":"Third level of chronology",
+          "repeatable":false
+        },
+        "l":{
+          "label":"Fourth level of chronology",
+          "repeatable":false
+        },
+        "m":{
+          "label":"Alternative numbering scheme, chronology",
+          "repeatable":false
+        },
+        "n":{
+          "label":"Pattern note",
+          "repeatable":false
+        },
+        "p":{
+          "label":"Number of pieces per issuance",
+          "repeatable":false
+        },
+        "u":{
+          "label":"Bibliographic units per next higher level",
+          "repeatable":true
+        },
+        "v":{
+          "label":"Numbering continuity",
+          "repeatable":true
+        },
+        "w":{
+          "label":"Frequency",
+          "repeatable":false
+        },
+        "x":{
+          "label":"Calendar change",
+          "repeatable":false
+        },
+        "y":{
+          "label":"Regularity pattern",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Numbering scheme",
+          "repeatable":true
+        },
+        "o":{
+          "label":"Type of unit",
+          "repeatable":true
+        },
+        "t":{
+          "label":"Copy",
+          "repeatable":false
+        },
+        "2":{
+          "label":"Source of caption abbreviation",
+          "repeatable":true
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":false
+        }
+      },
+      "repeatable":true
+    },
+    "856":{
+      "label":"Electronic Location and Access",
+      "indicator1":{
+        "label":"Access method",
+        "codes":{
+          " ":"No information provided",
+          "0":"Email",
+          "1":"FTP",
+          "2":"Remote login (Telnet)",
+          "3":"Dial-up",
+          "4":"HTTP",
+          "7":"Method specified in subfield $2"
+        }
+      },
+      "indicator2":{
+        "label":"Relationship",
+        "codes":{
+          " ":"No information provided",
+          "0":"Resource",
+          "1":"Version of resource",
+          "2":"Related resource",
+          "3":"Component part(s) of resource",
+          "4":"Version of component part(s) of resource",
+          "8":"No display constant generated"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Host name",
+          "repeatable":true
+        },
+        "c":{
+          "label":"Compression information",
+          "repeatable":true
+        },
+        "d":{
+          "label":"Path",
+          "repeatable":true
+        },
+        "f":{
+          "label":"Electronic name",
+          "repeatable":true
+        },
+        "g":{
+          "label":"Persistent identifier",
+          "repeatable":true
+        },
+        "h":{
+          "label":"Non-functioning Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "l":{
+          "label":"Standardized information governing access",
+          "repeatable":true
+        },
+        "m":{
+          "label":"Contact for access assistance",
+          "repeatable":true
+        },
+        "n":{
+          "label":"Terms governing access",
+          "repeatable":true
+        },
+        "o":{
+          "label":"Operating system",
+          "repeatable":false
+        },
+        "p":{
+          "label":"Port",
+          "repeatable":false
+        },
+        "q":{
+          "label":"Electronic format type",
+          "repeatable":true
+        },
+        "r":{
+          "label":"Standardized information governing use and reproduction",
+          "repeatable":true
+        },
+        "s":{
+          "label":"File size",
+          "repeatable":true
+        },
+        "t":{
+          "label":"Terms governing use and reproduction",
+          "repeatable":true
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "v":{
+          "label":"Hours access method available",
+          "repeatable":true
+        },
+        "w":{
+          "label":"Record control number",
+          "repeatable":true
+        },
+        "x":{
+          "label":"Nonpublic note",
+          "repeatable":true
+        },
+        "y":{
+          "label":"Link text",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Public note",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Access method",
+          "repeatable":false
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "7":{
+          "label":"Access status",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "857":{
+      "label":"Electronic Archive Location and Access",
+      "indicator1":{
+        "label":"Access method",
+        "codes":{
+          " ":"No information provided",
+          "1":"FTP",
+          "4":"HTTP",
+          "7":"Method specified in subfield $2"
+        }
+      },
+      "indicator2":{
+        "label":"Relationship",
+        "codes":{
+          " ":"No information provided",
+          "0":"Resource",
+          "1":"Version of resource",
+          "2":"Related resource",
+          "3":"Component part(s) of resource",
+          "4":"Version of component part(s) of resource",
+          "8":"No display constant generated"
+        }
+      },
+      "subfields":{
+        "b":{
+          "label":"Name of archiving agency",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Name of Web archive or digital archive repository",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Date range of archived material",
+          "repeatable":false
+        },
+        "f":{
+          "label":"Archive completeness",
+          "repeatable":false
+        },
+        "g":{
+          "label":"Persistent identifier",
+          "repeatable":true
+        },
+        "h":{
+          "label":"Non-functioning Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "l":{
+          "label":"Standardized information governing access",
+          "repeatable":true
+        },
+        "m":{
+          "label":"Contact for access assistance",
+          "repeatable":true
+        },
+        "n":{
+          "label":"Terms governing access",
+          "repeatable":true
+        },
+        "q":{
+          "label":"Electronic format type",
+          "repeatable":true
+        },
+        "r":{
+          "label":"Standardized information governing use and reproduction",
+          "repeatable":true
+        },
+        "s":{
+          "label":"File size",
+          "repeatable":true
+        },
+        "t":{
+          "label":"Terms governing use and reproduction",
+          "repeatable":true
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":true
+        },
+        "x":{
+          "label":"Nonpublic note",
+          "repeatable":true
+        },
+        "y":{
+          "label":"Link text",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Public note",
+          "repeatable":true
+        },
+        "2":{
+          "label":"Access method",
+          "repeatable":false
+        },
+        "3":{
+          "label":"Materials specified",
+          "repeatable":false
+        },
+        "5":{
+          "label":"Institution to which field applies",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "7":{
+          "label":"Access status",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "863":{
+      "label":"Enumeration and Chronology-Basic Bibliographic Unit",
+      "indicator1":{
+        "label":"Field encoding level",
+        "codes":{
+          " ":"No information provided",
+          "3":"Holdings level 3",
+          "4":"Holdings level 4",
+          "5":"Holdings level 4 with piece designation"
+        }
+      },
+      "indicator2":{
+        "label":"Form of holdings",
+        "codes":{
+          " ":"No information provided",
+          "0":"Compressed",
+          "1":"Uncompressed",
+          "2":"Compressed, use textual display",
+          "3":"Uncompressed, use textual display",
+          "4":"Item(s) not published"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"First level of enumeration",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Second level of enumeration",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Third level of enumeration",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Fourth level of enumeration",
+          "repeatable":false
+        },
+        "e":{
+          "label":"Fifth level of enumeration",
+          "repeatable":false
+        },
+        "f":{
+          "label":"Sixth level of enumeration",
+          "repeatable":false
+        },
+        "g":{
+          "label":"Alternative numbering scheme, first level of enumeration",
+          "repeatable":false
+        },
+        "h":{
+          "label":"Alternative numbering scheme, second level of enumeration",
+          "repeatable":false
+        },
+        "i":{
+          "label":"First level of chronology",
+          "repeatable":false
+        },
+        "j":{
+          "label":"Second level of chronology",
+          "repeatable":false
+        },
+        "k":{
+          "label":"Third level of chronology",
+          "repeatable":false
+        },
+        "l":{
+          "label":"Fourth level of chronology",
+          "repeatable":false
+        },
+        "m":{
+          "label":"Alternative numbering scheme, chronology",
+          "repeatable":false
+        },
+        "n":{
+          "label":"Converted Gregorian year",
+          "repeatable":false
+        },
+        "o":{
+          "label":"Title of unit",
+          "repeatable":true
+        },
+        "p":{
+          "label":"Piece designation",
+          "repeatable":false
+        },
+        "q":{
+          "label":"Piece physical condition",
+          "repeatable":false
+        },
+        "s":{
+          "label":"Copyright article-fee code",
+          "repeatable":true
+        },
+        "t":{
+          "label":"Copy number",
+          "repeatable":false
+        },
+        "w":{
+          "label":"Break indicator",
+          "repeatable":false
+        },
+        "x":{
+          "label":"Nonpublic note",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Public note",
+          "repeatable":true
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":false
+        }
+      },
+      "repeatable":true
+    },
+    "864":{
+      "label":"Enumeration and Chronology-Supplementary Material",
+      "indicator1":{
+        "label":"Field encoding level",
+        "codes":{
+          " ":"No information provided",
+          "3":"Holdings level 3",
+          "4":"Holdings level 4",
+          "5":"Holdings level 4 with piece designation"
+        }
+      },
+      "indicator2":{
+        "label":"Form of holdings",
+        "codes":{
+          " ":"No information provided",
+          "0":"Compressed",
+          "1":"Uncompressed",
+          "2":"Compressed, use textual display",
+          "3":"Uncompressed, use textual display",
+          "4":"Item(s) not published"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"First level of enumeration",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Second level of enumeration",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Third level of enumeration",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Fourth level of enumeration",
+          "repeatable":false
+        },
+        "e":{
+          "label":"Fifth level of enumeration",
+          "repeatable":false
+        },
+        "f":{
+          "label":"Sixth level of enumeration",
+          "repeatable":false
+        },
+        "g":{
+          "label":"Alternative numbering scheme, first level of enumeration",
+          "repeatable":false
+        },
+        "h":{
+          "label":"Alternative numbering scheme, second level of enumeration",
+          "repeatable":false
+        },
+        "i":{
+          "label":"First level of chronology",
+          "repeatable":false
+        },
+        "j":{
+          "label":"Second level of chronology",
+          "repeatable":false
+        },
+        "k":{
+          "label":"Third level of chronology",
+          "repeatable":false
+        },
+        "l":{
+          "label":"Fourth level of chronology",
+          "repeatable":false
+        },
+        "m":{
+          "label":"Alternative numbering scheme, chronology",
+          "repeatable":false
+        },
+        "n":{
+          "label":"Converted Gregorian year",
+          "repeatable":false
+        },
+        "o":{
+          "label":"Title of unit",
+          "repeatable":true
+        },
+        "p":{
+          "label":"Piece designation",
+          "repeatable":false
+        },
+        "q":{
+          "label":"Piece physical condition",
+          "repeatable":false
+        },
+        "s":{
+          "label":"Copyright article-fee code",
+          "repeatable":true
+        },
+        "t":{
+          "label":"Copy number",
+          "repeatable":false
+        },
+        "w":{
+          "label":"Break indicator",
+          "repeatable":false
+        },
+        "x":{
+          "label":"Nonpublic note",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Public note",
+          "repeatable":true
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":false
+        }
+      },
+      "repeatable":true
+    },
+    "865":{
+      "label":"Enumeration and Chronology-Indexes",
+      "indicator1":{
+        "label":"Field encoding level",
+        "codes":{
+          " ":"No information provided",
+          "4":"Holdings level 4",
+          "5":"Holdings level 4 with piece designation"
+        }
+      },
+      "indicator2":{
+        "label":"Form of holdings",
+        "codes":{
+          " ":"No information provided",
+          "1":"Uncompressed",
+          "3":"Uncompressed, use textual display"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"First level of enumeration",
+          "repeatable":false
+        },
+        "b":{
+          "label":"Second level of enumeration",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Third level of enumeration",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Fourth level of enumeration",
+          "repeatable":false
+        },
+        "e":{
+          "label":"Fifth level of enumeration",
+          "repeatable":false
+        },
+        "f":{
+          "label":"Sixth level of enumeration",
+          "repeatable":false
+        },
+        "g":{
+          "label":"Alternative numbering scheme, first level of enumeration",
+          "repeatable":false
+        },
+        "h":{
+          "label":"Alternative numbering scheme, second level of enumeration",
+          "repeatable":false
+        },
+        "i":{
+          "label":"First level of chronology",
+          "repeatable":false
+        },
+        "j":{
+          "label":"Second level of chronology",
+          "repeatable":false
+        },
+        "k":{
+          "label":"Third level of chronology",
+          "repeatable":false
+        },
+        "l":{
+          "label":"Fourth level of chronology",
+          "repeatable":false
+        },
+        "m":{
+          "label":"Alternative numbering scheme, chronology",
+          "repeatable":false
+        },
+        "v":{
+          "label":"Issuing date",
+          "repeatable":true
+        },
+        "n":{
+          "label":"Converted Gregorian year",
+          "repeatable":false
+        },
+        "o":{
+          "label":"Title of unit",
+          "repeatable":true
+        },
+        "p":{
+          "label":"Piece designation",
+          "repeatable":false
+        },
+        "q":{
+          "label":"Piece physical condition",
+          "repeatable":false
+        },
+        "s":{
+          "label":"Copyright article-fee code",
+          "repeatable":true
+        },
+        "t":{
+          "label":"Copy number",
+          "repeatable":false
+        },
+        "w":{
+          "label":"Break indicator",
+          "repeatable":false
+        },
+        "x":{
+          "label":"Nonpublic note",
+          "repeatable":true
+        },
+        "z":{
+          "label":"Public note",
+          "repeatable":true
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":false
+        }
+      },
+      "repeatable":true
+    },
+    "866":{
+      "label":"Textual Holdings-Basic Bibliographic Unit",
+      "indicator1":{
+        "label":"Field encoding level",
+        "codes":{
+        }
+      },
+      "indicator2":{
+        "label":"Type of notation",
+        "codes":{
+        }
+      },
+      "repeatable":true
+    },
+    "867":{
+      "label":"Textual Holdings-Supplementary Material",
+      "indicator1":{
+        "label":"Field encoding level",
+        "codes":{
+        }
+      },
+      "indicator2":{
+        "label":"Type of notation",
+        "codes":{
+        }
+      },
+      "repeatable":true
+    },
+    "868":{
+      "label":"Textual Holdings-Indexes",
+      "indicator1":{
+        "label":"Field encoding level",
+        "codes":{
+        }
+      },
+      "indicator2":{
+        "label":"Type of notation",
+        "codes":{
+        }
+      },
+      "repeatable":true
+    },
+    "876":{
+      "label":"Item Information-Basic Bibliographic Unit",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "repeatable":true
+    },
+    "877":{
+      "label":"Item Information-Supplementary Material",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "repeatable":true
+    },
+    "878":{
+      "label":"Item Information-Indexes",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "repeatable":true
+    },
+    "880":{
+      "label":"Alternate Graphic Representation",
+      "indicator1":{
+        "label":"Same as associated field",
+        "codes":{
+        }
+      },
+      "indicator2":{
+        "label":"Same as associated field",
+        "codes":{
+        }
+      },
+      "subfields":{
+        "a-$z":{
+          "label":"",
+          "repeatable":false
+        },
+        "0-$5":{
+          "label":"",
+          "repeatable":false
+        },
+        "7-$9":{
+          "label":"",
+          "repeatable":false
+        },
+        "6":{
+          "label":"Linkage",
+          "repeatable":false
+        }
+      },
+      "repeatable":true
+    },
+    "883":{
+      "label":"Metadata Provenance",
+      "indicator1":{
+        "label":"Method of assignment",
+        "codes":{
+          " ":"No information provided\/not applicable",
+          "0":"Fully machine-generated",
+          "1":"Partially machine-generated",
+          "2":"Not machine-generated"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Creation process",
+          "repeatable":false
+        },
+        "c":{
+          "label":"Confidence value",
+          "repeatable":false
+        },
+        "d":{
+          "label":"Creation date",
+          "repeatable":false
+        },
+        "q":{
+          "label":"Assigning or generating agency",
+          "repeatable":false
+        },
+        "x":{
+          "label":"Validity end date",
+          "repeatable":false
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":false
+        },
+        "w":{
+          "label":"Bibliographic record control number",
+          "repeatable":true
+        },
+        "0":{
+          "label":"Authority record control number or standard number",
+          "repeatable":true
+        },
+        "1":{
+          "label":"Real World Object URI",
+          "repeatable":true
+        },
+        "8":{
+          "label":"Field link and sequence number",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "884":{
+      "label":"Description Conversion Information",
+      "indicator1":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "indicator2":{
+        "label":"Undefined",
+        "codes":{
+          " ":"Undefined"
+        }
+      },
+      "subfields":{
+        "a":{
+          "label":"Conversion process",
+          "repeatable":false
+        },
+        "g":{
+          "label":"Conversion date",
+          "repeatable":false
+        },
+        "k":{
+          "label":"Identifier of source metadata",
+          "repeatable":false
+        },
+        "q":{
+          "label":"Conversion agency",
+          "repeatable":false
+        },
+        "u":{
+          "label":"Uniform Resource Identifier",
+          "repeatable":true
+        }
+      },
+      "repeatable":true
+    },
+    "LDR":{
+      "label":"Leader",
+      "positions":{
+        "0-4":{
+          "label":"Record length",
+          "start":0,
+          "end":4,
+          "codes":{
+          }
+        },
+        "5-5":{
+          "label":"Record status",
+          "start":5,
+          "end":5,
+          "codes":{
+            "c":"Corrected or revised",
+            "d":"Deleted",
+            "n":"New"
+          }
+        },
+        "6-6":{
+          "label":"Type of record",
+          "start":6,
+          "end":6,
+          "codes":{
+            "u":"Unknown",
+            "v":"Multipart item holdings",
+            "x":"Single-part item holdings",
+            "y":"Serial item holdings"
+          }
+        },
+        "7-8":{
+          "label":"Undefined character positions",
+          "start":7,
+          "end":8,
+          "codes":{
+            " ":"Undefined"
+          }
+        },
+        "9-9":{
+          "label":"Character coding scheme",
+          "start":9,
+          "end":9,
+          "codes":{
+            " ":"MARC-8",
+            "a":"UCS\/Unicode"
+          }
+        },
+        "10-10":{
+          "label":"Indicator count",
+          "start":10,
+          "end":10,
+          "codes":{
+            "2":"Number of character positions used for indicators"
+          }
+        },
+        "11-11":{
+          "label":"Subfield code length",
+          "start":11,
+          "end":11,
+          "codes":{
+            "2":"Number of character positions used for a subfield code"
+          }
+        },
+        "12-16":{
+          "label":"Base address of data",
+          "start":12,
+          "end":16,
+          "codes":{
+            "[number]":"Length of Leader and Directory"
+          }
+        },
+        "17-17":{
+          "label":"Encoding level",
+          "start":17,
+          "end":17,
+          "codes":{
+            "1":"Holdings level 1",
+            "2":"Holdings level 2",
+            "3":"Holdings level 3",
+            "4":"Holdings level 4",
+            "5":"Holdings level 4 with piece designation",
+            "m":"Mixed level",
+            "u":"Unknown",
+            "z":"Other level"
+          }
+        },
+        "18-18":{
+          "label":"Item information in record",
+          "start":18,
+          "end":18,
+          "codes":{
+            "i":"Item information",
+            "n":"No item information"
+          }
+        },
+        "19-19":{
+          "label":"Undefined character position",
+          "start":19,
+          "end":19,
+          "codes":{
+            " ":"Undefined"
+          }
+        },
+        "20-20":{
+          "label":"Length of the length-of-field portion",
+          "start":20,
+          "end":20,
+          "codes":{
+            "4":"Number of characters in the length-of-field portion of a Directory entry"
+          }
+        },
+        "21-21":{
+          "label":"Length of the starting-character-position portion",
+          "start":21,
+          "end":21,
+          "codes":{
+            "5":"Number of characters in the starting-character-position portion of a Directory"
+          }
+        },
+        "22-22":{
+          "label":"Length of the implementation-defined portion",
+          "start":22,
+          "end":22,
+          "codes":{
+            "0":"Number of characters in the implementation-defined portion of a Directory entry"
+          }
+        },
+        "23-23":{
+          "label":"Undefined",
+          "start":23,
+          "end":23,
+          "codes":{
+            "0":"Undefined"
+          }
+        }
+      },
+      "repeatable":false
+    },
+    "001":{
+      "label":"Control Number",
+      "repeatable":false
+    },
+    "003":{
+      "label":"Control Number Identifier",
+      "repeatable":false
+    },
+    "005":{
+      "label":"Date and Time of Latest Transaction",
+      "repeatable":false
+    }
+  }
+}
