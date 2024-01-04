@@ -44,9 +44,10 @@ for $p in ms:parse-docs()
               let $end := xs:integer($data/positions/stop)
               let $values :=
                 <fn:map key="codes">{
-                  for $entry in $data/values/entry[normalize-space(name)]                                        
+                  for $entry in $data/values/entry[normalize-space(name)]                                     
+                  let $code := if ($entry/data(code) = "#") then " " else $entry/data(code)
                   return
-                    <fn:string key="{$entry/data(code)}">{data($entry/data(name))}</fn:string>
+                    <fn:string key="{$code}">{data($entry/data(name))}</fn:string>
                 }</fn:map>
               return
                 <fn:map key="{$start}-{$end}">
@@ -66,8 +67,9 @@ for $p in ms:parse-docs()
                   <fn:string key="label">{$ind/data(name)}</fn:string>                    
                   <fn:map key="codes">{
                     for $value in $ind/data
+                    let $code := if ($value/key = "#") then " " else $value/key
                     return
-                      <fn:string key="{$value/key}">{$value/data(value)}</fn:string>
+                      <fn:string key="{$code}">{$value/data(value)}</fn:string>
                   }</fn:map>
                </fn:map>
             )

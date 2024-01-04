@@ -9,13 +9,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -50,7 +50,7 @@
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -78,14 +78,14 @@
       "indicator1":{
         "label":"National bibliographic agency",
         "codes":{
-          "#":"Library and Archives Canada",
+          " ":"Library and Archives Canada",
           "7":"Source specified in subfield $2"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -113,13 +113,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Display constant controller",
         "codes":{
-          "#":"Copyright or legal deposit number",
+          " ":"Copyright or legal deposit number",
           "8":"No display constant generated"
         }
       },
@@ -156,13 +156,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -198,7 +198,7 @@
       "indicator1":{
         "label":"Level of international interest",
         "codes":{
-          "#":"No level specified",
+          " ":"No level specified",
           "0":"Continuing resource of international interest",
           "1":"Continuing resource not of international interest"
         }
@@ -206,7 +206,7 @@
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -245,7 +245,7 @@
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -301,7 +301,7 @@
       "indicator2":{
         "label":"Difference indicator",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"No difference",
           "1":"Difference"
         }
@@ -347,13 +347,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -385,13 +385,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -419,13 +419,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -453,13 +453,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -495,13 +495,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -525,13 +525,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -575,13 +575,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -625,13 +625,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -691,7 +691,7 @@
       "indicator1":{
         "label":"Privacy",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"Private",
           "1":"Not private"
         }
@@ -699,7 +699,7 @@
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -779,7 +779,7 @@
       "indicator1":{
         "label":"Restriction",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"No restrictions",
           "1":"Restrictions apply"
         }
@@ -787,7 +787,7 @@
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -855,13 +855,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -901,7 +901,7 @@
       "indicator1":{
         "label":"Privacy",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"Private",
           "1":"Not private"
         }
@@ -909,7 +909,7 @@
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -973,7 +973,7 @@
       "indicator1":{
         "label":"Privacy",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"Private",
           "1":"Not private"
         }
@@ -981,7 +981,7 @@
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1017,13 +1017,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1071,13 +1071,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1113,7 +1113,7 @@
       "indicator1":{
         "label":"Privacy",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"Private",
           "1":"Not private"
         }
@@ -1121,7 +1121,7 @@
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1217,13 +1217,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1247,13 +1247,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1277,13 +1277,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1347,13 +1347,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1377,13 +1377,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1447,7 +1447,7 @@
       "indicator1":{
         "label":"Shelving scheme",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"Library of Congress classification",
           "1":"Dewey Decimal classification",
           "2":"National Library of Medicine classification",
@@ -1462,7 +1462,7 @@
       "indicator2":{
         "label":"Shelving order",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"Not enumeration",
           "1":"Primary enumeration",
           "2":"Alternative enumeration"
@@ -1581,7 +1581,7 @@
           "1":"Can compress but not expand",
           "2":"Can compress or expand",
           "3":"Unknown",
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
@@ -1591,7 +1591,7 @@
           "1":"Captions verified; all levels may not be present",
           "2":"Captions unverified; all levels present",
           "3":"Captions unverified; all levels may not be present",
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1715,7 +1715,7 @@
           "1":"Can compress but not expand",
           "2":"Can compress or expand",
           "3":"Unknown",
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
@@ -1725,7 +1725,7 @@
           "1":"Captions verified; all levels may not be present",
           "2":"Captions unverified; all levels present",
           "3":"Captions unverified; all levels may not be present",
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1849,7 +1849,7 @@
           "1":"Can compress but not expand",
           "2":"Can compress or expand",
           "3":"Unknown",
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
@@ -1859,7 +1859,7 @@
           "1":"Captions verified; all levels may not be present",
           "2":"Captions unverified; all levels present",
           "3":"Captions unverified; all levels may not be present",
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -1979,7 +1979,7 @@
       "indicator1":{
         "label":"Access method",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"Email",
           "1":"FTP",
           "2":"Remote login (Telnet)",
@@ -1991,7 +1991,7 @@
       "indicator2":{
         "label":"Relationship",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"Resource",
           "1":"Version of resource",
           "2":"Related resource",
@@ -2113,7 +2113,7 @@
       "indicator1":{
         "label":"Access method",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "1":"FTP",
           "4":"HTTP",
           "7":"Method specified in subfield $2"
@@ -2122,7 +2122,7 @@
       "indicator2":{
         "label":"Relationship",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"Resource",
           "1":"Version of resource",
           "2":"Related resource",
@@ -2232,7 +2232,7 @@
       "indicator1":{
         "label":"Field encoding level",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "3":"Holdings level 3",
           "4":"Holdings level 4",
           "5":"Holdings level 4 with piece designation"
@@ -2241,7 +2241,7 @@
       "indicator2":{
         "label":"Form of holdings",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"Compressed",
           "1":"Uncompressed",
           "2":"Compressed, use textual display",
@@ -2354,7 +2354,7 @@
       "indicator1":{
         "label":"Field encoding level",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "3":"Holdings level 3",
           "4":"Holdings level 4",
           "5":"Holdings level 4 with piece designation"
@@ -2363,7 +2363,7 @@
       "indicator2":{
         "label":"Form of holdings",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "0":"Compressed",
           "1":"Uncompressed",
           "2":"Compressed, use textual display",
@@ -2476,7 +2476,7 @@
       "indicator1":{
         "label":"Field encoding level",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "4":"Holdings level 4",
           "5":"Holdings level 4 with piece designation"
         }
@@ -2484,7 +2484,7 @@
       "indicator2":{
         "label":"Form of holdings",
         "codes":{
-          "#":"No information provided",
+          " ":"No information provided",
           "1":"Uncompressed",
           "3":"Uncompressed, use textual display"
         }
@@ -2640,13 +2640,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "repeatable":true
@@ -2656,13 +2656,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "repeatable":true
@@ -2672,13 +2672,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "repeatable":true
@@ -2720,7 +2720,7 @@
       "indicator1":{
         "label":"Method of assignment",
         "codes":{
-          "#":"No information provided\/not applicable",
+          " ":"No information provided\/not applicable",
           "0":"Fully machine-generated",
           "1":"Partially machine-generated",
           "2":"Not machine-generated"
@@ -2729,7 +2729,7 @@
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -2781,13 +2781,13 @@
       "indicator1":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "indicator2":{
         "label":"Undefined",
         "codes":{
-          "#":"Undefined"
+          " ":"Undefined"
         }
       },
       "subfields":{
@@ -2850,7 +2850,7 @@
           "start":7,
           "end":8,
           "codes":{
-            "#":"Undefined"
+            " ":"Undefined"
           }
         },
         "9-9":{
@@ -2858,7 +2858,7 @@
           "start":9,
           "end":9,
           "codes":{
-            "#":"MARC-8",
+            " ":"MARC-8",
             "a":"UCS\/Unicode"
           }
         },
@@ -2915,7 +2915,7 @@
           "start":19,
           "end":19,
           "codes":{
-            "#":"Undefined"
+            " ":"Undefined"
           }
         },
         "20-20":{
