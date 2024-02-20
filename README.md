@@ -19,7 +19,7 @@ Contributions and bug reports are welcome!
 
 ## Installation
 * Download and install BaseX either GUI or command line (see the [BaseX wiki](http://docs.basex.org/wiki/) for detailed information).
-* Install `jq` ([jq](https://jqlang.github.io/jq/)) using a package manager such as `apt` or `homebrew` (depending on your environment).
+* Install [`jq`](https://jqlang.github.io/jq/) using a package manager such as `apt` or `homebrew` (depending on your environment).
 
 To install BaseX into subdirectory `basex` from the command line:
 
