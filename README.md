@@ -4,6 +4,12 @@ An extension of the [marc-json-schema](https://github.com/thisismattmiller/marc-
 
 In addition to the MARC Bibliographic Format, the Authority and Holdings Formats are now represented as well.
 
+Schema files are generated in [Avram schema format](https://format.gbv.de/schema/avram/specification):
+
+- `marc21_authority_schema.json`
+- `marc21_bibliographic_schema.json`
+- `marc21_holdings_schema.json`
+
 Contributions and bug reports are welcome!
 
 ## Dependencies
@@ -38,3 +44,10 @@ Optionally, the value of a directory path can be passed on the command line to t
 Installation, scraping and parsing can also be run automatically by calling `make`:
 
     make -B
+
+## Contributors
+
+- Tim Thompson (port and extension in XQuery)
+- Matt Miller (original Python code)
+- Jakob Voß (adjustments to comply with Avram specification) 
+

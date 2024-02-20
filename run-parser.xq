@@ -5,12 +5,9 @@ import module namespace ms = "__marc-scraper__" at "src/marc-scraper.xqm";
 (: Path to the output directory :)
 declare variable $ms:DIR as xs:string external := "";
 
-file:write($ms:DIR||"marc21_json_schema.json",
-  <fn:array>{
-    let $parsed := ms:parse-docs()
-    for $p in $parsed
-    let $db := $p/data(@db)
-    return    
+for $p in ms:parse-docs()
+  let $db := $p/data(@db)
+  return file:write($ms:DIR||"marc21_"||$db||"_schema.json",
       <fn:map>
         <fn:string key="title">MARC21 {$db} format</fn:string>
         <fn:string key="url">https://www.loc.gov/marc/{$db}/</fn:string>
@@ -20,7 +17,7 @@ file:write($ms:DIR||"marc21_json_schema.json",
           for $field in $p/*
           let $key := if ($field/data(@code) = "leader") then "LDR" else $field/data(@code)
           let $name := $field/data(title)
-          let $positions := <fn:array key="positions">{
+          let $positions := <fn:map key="positions">{
             if ($field/positions/group)
             then
               for $group in $field/positions/group            
@@ -32,7 +29,7 @@ file:write($ms:DIR||"marc21_json_schema.json",
                   let $start := xs:integer($data/start)
                   let $end := xs:integer($data/stop)               
                   return (
-                    <fn:map>
+                    <fn:map key="{$start}-{$end}">
                       <fn:string key="label">{$name}</fn:string>                        
                       <fn:number key="start">{$start}</fn:number>  
                       <fn:number key="end">{$end}</fn:number>
@@ -47,30 +44,32 @@ file:write($ms:DIR||"marc21_json_schema.json",
               let $end := xs:integer($data/positions/stop)
               let $values :=
                 <fn:map key="codes">{
-                  for $entry in $data/values/entry[normalize-space(name)]                                        
+                  for $entry in $data/values/entry[normalize-space(name)]                                     
+                  let $code := if ($entry/data(code) = "#") then " " else $entry/data(code)
                   return
-                    <fn:string key="{$entry/data(code)}">{data($entry/data(name))}</fn:string>
+                    <fn:string key="{$code}">{data($entry/data(name))}</fn:string>
                 }</fn:map>
               return
-                <fn:map>
+                <fn:map key="{$start}-{$end}">
                   <fn:string key="label">{$name}</fn:string>
                   <fn:number key="start">{$start}</fn:number>
                   <fn:number key="end">{$end}</fn:number>
                   {$values}                    
                 </fn:map>                                      
-          }</fn:array>
+          }</fn:map>
           let $repeatable := $field/data(repeat)
           let $indicators := <fn:map key="indicators">{
             if ($field/indicators/*)
             then (
               for $ind in $field/indicators/entry
               return
-                <fn:map key="{$ind/@n}">
+                <fn:map key="indicator{$ind/@n}">
                   <fn:string key="label">{$ind/data(name)}</fn:string>                    
                   <fn:map key="codes">{
                     for $value in $ind/data
+                    let $code := if ($value/key = "#") then " " else $value/key
                     return
-                      <fn:string key="{$value/key}">{$value/data(value)}</fn:string>
+                      <fn:string key="{$code}">{$value/data(value)}</fn:string>
                   }</fn:map>
                </fn:map>
             )
@@ -107,13 +106,13 @@ file:write($ms:DIR||"marc21_json_schema.json",
             <fn:map key="{$key}">
               <fn:string key="label">{$name}</fn:string>
               {if ($positions/*) {$positions}}
-              {if ($indicators/*) {$indicators}}
+              {if ($indicators/*) {$indicators/*}}
               {if ($subfields/*) {$subfields}}
               <fn:boolean key="repeatable">{$repeatable}</fn:boolean>
             </fn:map>
           }</fn:map>            
         </fn:map>
-  }</fn:array>, 
+  , 
   map {
     "method": "json", "escape-solidus": "no", "json": map {
       "format": "basic", "indent": "yes"
