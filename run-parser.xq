@@ -7,7 +7,8 @@ declare variable $ms:DIR as xs:string external := "";
 
 for $p in ms:parse-docs()
   let $db := $p/data(@db)
-  return file:write($ms:DIR||"marc21_"||$db||"_schema.json",
+  return file:write-text($ms:DIR||"marc21_"||$db||"_schema.json",
+    serialize(
       <fn:map>
         <fn:string key="title">MARC21 {$db} format</fn:string>
         <fn:string key="url">https://www.loc.gov/marc/{$db}/</fn:string>
@@ -112,10 +113,11 @@ for $p in ms:parse-docs()
             </fn:map>
           }</fn:map>            
         </fn:map>
-  , 
-  map {
-    "method": "json", "escape-solidus": "no", "json": map {
-      "format": "basic", "indent": "yes"
+    , 
+    map {
+      "method": "json", "escape-solidus": "no", "json": map {
+        "format": "basic", "indent": "yes"
+      }
     }
-  }
+  ) ! proc:execute("jq", ("-sS", ., "."))/output/text()
 )

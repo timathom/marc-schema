@@ -93,7 +93,7 @@ declare variable $ms:HOLD := "marc-holdings-docs";
        }</data>
        else <data code="{$url?field}" status="NA"/>
        ,
-       prof:void(trace(string-join(($url?url, $status), ": ")))
+       void(trace(string-join(($url?url, $status), ": ")))
      )       
    }, "data")
        
