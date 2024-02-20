@@ -13,10 +13,13 @@ Schema files are generated in [Avram schema format](https://format.gbv.de/schema
 Contributions and bug reports are welcome!
 
 ## Dependencies
-Requires the BaseX XML database and query processor and optional `make` for automatic execution via Unix command line.
+* BaseX XML database and query processor
+* jq command-line tool for JSON normalization
+* Optional `make` for automatic execution via Unix command line
 
 ## Installation
-Download and install BaseX either GUI or command line (see the [BaseX wiki](http://docs.basex.org/wiki/) for detailled information).
+* Download and install BaseX either GUI or command line (see the [BaseX wiki](http://docs.basex.org/wiki/) for detailled information).
+* Install jq ([jq](https://jqlang.github.io/jq/)) using a package manager such as `apt` or `homebrew` (depending on your environment)
 
 To install BaseX into subdirectory `basex` from the command line:
 
@@ -26,7 +29,7 @@ To install BaseX into subdirectory `basex` from the command line:
 ## Usage
 
 ### GUI
-The GUI is more conveniant for manual execution:
+The GUI is more convenient for manual execution:
 
 1. Launch the BaseX GUI
 2. `run-scraper.xq` will fetch the HTML pages for the MARC standards documentation and save them in a BaseX database.
