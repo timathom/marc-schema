@@ -1,2 +1,7 @@
 *.bak
 .DS_Store
+
+# BaseX install and scrape staging
+basex/
+BaseX.zip
+build/

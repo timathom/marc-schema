@@ -115,12 +115,17 @@ declare function ms:parse-docs() {
     <data db="{$db}">{
       
       for $doc in $data/*/data[@status = "200"][normalize-space(@code)]
-      let $h1 := string-join($doc//h1//text())    
+                              [not(ms:is-appendix-field(.))]
+      let $h1 := string-join($doc//h1//text())
       return element {$db} {
         attribute {"code"} {$doc/@code},
         
         ms:parse-title(normalize-space($h1)),
         ms:parse-repeat($h1)
+        ,
+        (: Retired designators, for every field shape -- data, fixed and MFHD
+         : group alike, since Leader and 007 carry a history section too. :)
+        ms:parse-obsolete($doc)
         ,      
         if ($db = "holdings" and $doc/@code = (
           "853", 
@@ -190,7 +195,116 @@ declare function ms:parse-docs() {
 
 
 
-(:~ 
+(:~
+ : Is this field local or obsolete rather than part of the format?
+ :
+ : LC keeps the page for a retired field online indefinitely, and the page still
+ : carries a full subfield and indicator table, so nothing in the field's own
+ : description says it has been withdrawn.  The breadcrumb does: a current field
+ : is filed under its group (046 under 01X-09X), while a retired or
+ : United-States-local one is filed under Appendix H, Local Data Elements.  For
+ : bibliographic that separates 261, 262, 400, 410, 411 and 440 from the rest,
+ : which is the same set a cataloguer would name.
+ :
+ : Do not trust the breadcrumb's other links: 440 is also filed under Community
+ : Information 01X-08X, which is a different format altogether.  Matching the
+ : appendix rather than the group tolerates that.
+ :
+ : The leader has no breadcrumb, so it is never excluded by this test.
+ :
+ : @param $doc The stored page
+ : @return True if the page files the field under an appendix
+ :)
+declare function ms:is-appendix-field(
+  $doc as element(data)
+) as xs:boolean {
+
+  some $a in $doc//div[@class = "head-nav"]//a
+  satisfies matches($a/@href, "apndx[a-z]*\.html$")
+
+};
+
+(:~
+ : Reports the fields ms:is-appendix-field excludes, so the exclusion is visible
+ : rather than a silent shrinking of the format.
+ :)
+declare function ms:excluded-fields() {
+
+  for $db in ("authority", "bibliographic", "holdings")
+  return
+    <data db="{$db}">{
+      for $doc in db:get("marc-" || $db || "-docs")/*/data[@status = "200"]
+                    [normalize-space(@code)][ms:is-appendix-field(.)]
+      return
+        <field code="{$doc/@code}">{
+          ms:parse-title(normalize-space(string-join($doc//h1//text()))),
+          <filed-under>{
+            string-join(
+              distinct-values(
+                for $a in $doc//div[@class = "head-nav"]//a[ends-with(@href, ".html")]
+                return replace($a/data(@href), "^.*/", "")
+              ), " "
+            )
+          }</filed-under>
+        }</field>
+    }</data>
+
+};
+
+(:~
+ : Splits a cell into the runs of content separated by <br/>.
+ :
+ : LC's pages are inconsistent about whether a code or subfield line is bare
+ : text, wrapped in <span>, or wrapped in <span class="changed"> because it
+ : changed in the current update.  Grouping on <br/> and taking the string value
+ : of each run reads all three the same way.
+ :
+ : @param $cell The td to split
+ : @param $skip Nodes to leave out of the runs (the <em> holding the name)
+ : @return One normalized string per run, empty runs dropped
+ :)
+declare function ms:split-on-br(
+  $cell as element()*,
+  $skip as node()*
+) as xs:string* {
+
+  for tumbling window $w in $cell/node()[not(. intersect $skip)]
+    start $s when true()
+    end $e next $n when $n/self::br
+  let $line := normalize-space(string-join($w))
+  where $line
+  return $line
+
+};
+
+(:~
+ : Splits a cell into <br/>-delimited runs, keeping every node.
+ :)
+declare function ms:split-on-br(
+  $cell as element()*
+) as xs:string* {
+
+  ms:split-on-br($cell, ())
+
+};
+
+(:~
+ : Drops the trailing "(R)" / "(NR)" repeatability marker from a label.
+ :
+ : The closing paren is optional because LC's pages do not always close it --
+ : 018$a reads "Copyright article-fee code (NR".  Only "R" and "NR" are matched,
+ : so a label that genuinely ends in parentheses, such as 041$r "... (non-textual)",
+ : is left alone.
+ :)
+declare function ms:strip-repeat-marker(
+  $label as xs:string
+) as xs:string {
+
+  normalize-space(replace($label, "\s*\((N?R)\)?\s*$", ""))
+
+};
+
+(:~
  :
  :
  :
@@ -417,21 +531,25 @@ declare function ms:parse-indicators(
   
   <indicators>{
     if ($table/@class = "indicators")
-    then (                
+    then (
+      (: Codes are usually wrapped in <span>, but not always: on 046 and 588 LC
+       : leaves the first indicator's codes as bare text between <br/>s, and 588
+       : carries a stray </span> on top of that.  Reading only $td/span dropped
+       : both fields' first indicator entirely.  Split on <br/> instead, which
+       : covers wrapped and bare codes alike. :)
       for $td at $p in $table//td
       return
         <entry n="{$p}">
-          <name>{data($td/em)}</name>
+          <name>{normalize-space(string-join($td/em[1]))}</name>
           {
-            for $value in $td/span
-            let $tokens := tokenize($value, " - ")
-            where every $t in $tokens satisfies normalize-space($t)
+            for $line in ms:split-on-br($td, $td/em)
+            where matches($line, "^\S+\s+-\s+\S")
             return <data>
-              <key>{normalize-space($tokens[1])}</key>
-              <value>{normalize-space($tokens[2])}</value>
+              <key>{normalize-space(substring-before($line, " - "))}</key>
+              <value>{normalize-space(substring-after($line, " - "))}</value>
             </data>
           }
-        </entry>                      
+        </entry>
     )
     else (
       for $td at $p in $table//td
@@ -561,13 +679,15 @@ declare function ms:parse-subfields(
             if ($td/br) 
             then <static>true</static>
             else <static>false</static>
-          let $tokens := normalize-space($td/text()[1]) => tokenize(" - ")
-          let $key := 
-            normalize-space(substring-after($tokens[1], "$"))
-          let $value := 
-            if (contains(normalize-space($tokens[2]), " ("))
-            then substring-before(normalize-space($tokens[2]), " (")
-            else normalize-space($tokens[2])          
+          (: Read the whole list item up to its first <br/>, not just its first
+           : text node.  LC wraps anything changed in the current update in
+           : <span class="changed">, which splits the label off the text node and
+           : left 540$f keyed "f -" with an empty label.  Everything before the
+           : first <br/> keeps the static-value lists out of the label. :)
+          let $head := normalize-space(string-join($td/node()[not(preceding-sibling::br)]))
+          let $key :=
+            normalize-space(substring-after(substring-before($head, " - "), "$"))
+          let $value := ms:strip-repeat-marker(substring-after($head, " - "))
           return <data>
             <key>{$key}</key>
             <name>{$value}</name>
@@ -591,25 +711,88 @@ declare function ms:parse-subfields(
         }</subfield>       
       )
       else (
-       for $text at $p in $table//tr[3]/td/br/preceding-sibling::text()[1]
+        (: Older LC markup: subfields are bare text separated by <br/>, with no
+         : list structure.  Walking br/preceding-sibling::text() silently drops
+         : the last entry in each cell, because nothing follows it -- that is how
+         : 017$i, 222$b, 242$n and 542$k went missing.  Take every <br/>-delimited
+         : run instead, so a trailing entry counts like any other. :)
+        for $line in $table//tr[3]/td ! ms:split-on-br(.)
+        where matches($line, "^\$\S+\s+-\s+\S")
         return <subfield>{
-          let $repeat := 
-            if (contains(normalize-space($text), "(R)"))
+          let $repeat :=
+            if (contains($line, "(R)"))
             then <repeat>true</repeat>
-            else <repeat>false</repeat>  
-         
-          let $tokens := normalize-space($text) => tokenize(" - ")
-          let $key := 
-            normalize-space(substring-after($tokens[1], "$"))
-          let $value := normalize-space(substring-before($tokens[2], " ("))
+            else <repeat>false</repeat>
+          let $key :=
+            normalize-space(substring-after(substring-before($line, " - "), "$"))
+          let $value := ms:strip-repeat-marker(substring-after($line, " - "))
           return <data>
             <key>{$key}</key>
             <name>{$value}</name>
             {$repeat}
-           
-            
           </data>
-        }</subfield>       
+        }</subfield>
       )
   }</subfields>
+};
+
+
+(:~
+ : What this field used to define, and stopped.
+ :
+ : LC keeps retired content designators in a "Content Designator History"
+ : section rather than in the subfield and indicator tables, so a withdrawn
+ : element is simply absent from everything else this module reads.  That makes
+ : it indistinguishable, from the schema alone, from an element LC never
+ : documented -- and the two need opposite treatment in a conversion, since an
+ : obsolete subfield needs no support and an undocumented one may.
+ :
+ : Three properties of the section that each produced a wrong answer first:
+ :
+ : * A code can be retired and later REISSUED with a different meaning.  856 $l
+ :   was "Logon" (obsolete 2020) and is now "Standardized information governing
+ :   access".  This function reports what the history says; deciding whether a
+ :   code is obsolete *now* means checking it is also absent from the current
+ :   subfield table, which the caller can do because both are in scope.
+ : * The indicator POSITION is contextual.  A line reads "0 - United States
+ :   [OBSOLETE]" and never names its indicator, so it has to come from the
+ :   nearest preceding "Indicator N" heading.  Reading it from the line yields
+ :   nothing at all.
+ : * Leader and 007 byte values appear here too, in a third shape that is
+ :   neither subfield nor indicator.  They are kept as <history> rather than
+ :   discarded, so a later pass can classify them without a re-scrape.
+ :)
+declare function ms:parse-obsolete(
+  $doc as element()
+) as element(obsolete) {
+
+  <obsolete>{
+    for $e in $doc//*[contains(., "OBSOLETE")][not(.//*[contains(., "OBSOLETE")])]
+    let $s := normalize-space(string($e))
+    let $ctx := (
+      for $n in $e/preceding::*[
+                  matches(normalize-space(string(.)), "^Indicator\s*[12]\b")][
+                  not(.//*[matches(normalize-space(string(.)), "^Indicator\s*[12]\b")])]
+      return normalize-space(string($n))
+    )[last()]
+    let $year :=
+      if (matches($s, "\[OBSOLETE,\s*[0-9][0-9][0-9][0-9]"))
+      then replace($s, "^.*\[OBSOLETE,\s*([0-9][0-9][0-9][0-9]).*$", "$1")
+      else ""
+    let $label := normalize-space(replace($s, "^.*?\s+-\s+(.*?)\s*\[OBSOLETE.*$", "$1"))
+    return
+      if (matches($s, "^\$[a-z0-9]\s+-\s+"))
+      then <subfield code="{substring($s, 2, 1)}" year="{$year}">{$label}</subfield>
+      else if (matches($s, "^Indicator\s*[12]\s+-\s+"))
+      then <indicator n="{replace($s, '^Indicator\s*([12]).*$', '$1')}"
+                      year="{$year}">{$label}</indicator>
+      else if (matches($s, "^[0-9#]\s+-\s+"))
+      then <indicator-value
+              n="{if (matches($ctx, '^Indicator\s*[12]'))
+                  then replace($ctx, '^Indicator\s*([12]).*$', '$1') else '?'}"
+              code="{if (substring($s, 1, 1) = '#') then ' ' else substring($s, 1, 1)}"
+              year="{$year}">{$label}</indicator-value>
+      else <history year="{$year}">{$s}</history>
+  }</obsolete>
+
 };
